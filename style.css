@@ -1,0 +1,35 @@
+html, body {
+  background-color: #141115;
+  color: #FFFDF9;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.bg-smanti-gradient {
+  background: linear-gradient(135deg, #FF2E93 0%, #D91B74 50%, #FF7043 100%);
+}
+
+.bg-smanti-dark-gradient {
+  background: linear-gradient(135deg, #141115 0%, #2A1422 60%, #2D1A19 100%);
+}
+
+.text-smanti-gradient {
+  background: linear-gradient(135deg, #FF2E93 0%, #FF7043 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tab-panel {
+  animation: tabFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tabFadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
