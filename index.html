@@ -3,38 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="podcastsmanti.id — Ruang dengar cerita, obrolan santai, dan suara kreatif dari balik dinding sekolah." />
-  <meta name="theme-color" content="#0B0B0D" />
-  <title>podcastsmanti.id — Suara &amp; Cerita Kita</title>
-
+  <title>PODCAST SMANTI — Wadah Suara & Cerita Sekolah</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
   <script>
     tailwind.config = {
       theme: {
         extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+          },
           colors: {
-            obsidian: {
-              950: '#0B0B0D',
-              900: '#121216',
-              850: '#16161B',
-              800: '#1C1C23',
-            },
-            ember: {
-              500: '#FF5500',
-              400: '#FF6E26',
-              600: '#E04B00',
+            smanti: {
+              black: '#141115',
+              charcoal: '#1E1A20',
+              charcoalSoft: '#2A252D',
+              pink: '#FF2E93',
+              pinkLight: '#FFE6F2',
+              pinkSoft: '#FFD1EC',
+              pinkBorder: '#FF99CC',
+              magenta: '#D91B74',
+              magentaDark: '#A80D56',
+              orange: '#FF7043',
+              orangeLight: '#FFA726',
+              cream: '#FFFDF9',
+              bgMain: '#141115',
             }
           },
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
+          boxShadow: {
+            'card': '0 4px 0px 0px #141115, 0 8px 20px -4px rgba(20, 17, 21, 0.12)',
+            'card-hover': '0 6px 0px 0px #FF2E93, 0 14px 28px -5px rgba(255, 46, 147, 0.3)',
+            'sticker': '3px 3px 0px 0px #141115',
+            'brand': '0 6px 20px -4px rgba(255, 46, 147, 0.5)',
+            'player': '0 -10px 35px rgba(20, 17, 21, 0.35)',
           }
         }
       }
@@ -42,65 +50,30 @@
   </script>
 
   <style>
-    :root {
-      --bg-primary: #0B0B0D;
-      --bg-card: #16161B;
-      --accent: #FF5500;
-      --accent-hover: #FF6E26;
-      --border-subtle: rgba(255, 255, 255, 0.08);
+    html, body {
+      background-color: #141115;
+      color: #FFFDF9;
+      min-height: 100vh;
+      margin: 0;
     }
-
-    body {
-      background-color: var(--bg-primary);
-      color: #F5F5F7;
-      font-family: "Plus Jakarta Sans", sans-serif;
-      overflow-x: hidden;
+    .bg-smanti-gradient {
+      background: linear-gradient(135deg, #FF2E93 0%, #D91B74 50%, #FF7043 100%);
     }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+    .bg-smanti-dark-gradient {
+      background: linear-gradient(135deg, #141115 0%, #2A1422 60%, #2D1A19 100%);
     }
-    ::-webkit-scrollbar-track {
-      background: #0B0B0D;
+    .text-smanti-gradient {
+      background: linear-gradient(135deg, #FF2E93 0%, #FF7043 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    ::-webkit-scrollbar-thumb {
-      background: #272730;
-      border-radius: 9999px;
+    .tab-panel {
+      animation: tabFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #FF5500;
+    @keyframes tabFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    /* Pulse Dot Animation */
-    @keyframes pulseRing {
-      0% { box-shadow: 0 0 0 0 rgba(255, 85, 0, 0.7); }
-      70% { box-shadow: 0 0 0 8px rgba(255, 85, 0, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 85, 0, 0); }
-    }
-    .pulse-dot {
-      animation: pulseRing 2s infinite;
-    }
-
-    /* Equalizer Bars Animation */
-    @keyframes eqWave {
-      0% { height: 4px; }
-      100% { height: 15px; }
-    }
-    .eq-bar {
-      width: 3px;
-      height: 5px;
-      background-color: #FF5500;
-      border-radius: 2px;
-      transition: height 0.2s ease;
-    }
-    .is-playing .eq-bar:nth-child(1) { animation: eqWave 0.65s ease-in-out infinite alternate; }
-    .is-playing .eq-bar:nth-child(2) { animation: eqWave 0.45s ease-in-out 0.15s infinite alternate; }
-    .is-playing .eq-bar:nth-child(3) { animation: eqWave 0.75s ease-in-out 0.05s infinite alternate; }
-    .is-playing .eq-bar:nth-child(4) { animation: eqWave 0.55s ease-in-out 0.25s infinite alternate; }
-
-    /* Custom Range Sliders */
     input[type="range"].audio-slider {
       -webkit-appearance: none;
       appearance: none;
@@ -109,1363 +82,804 @@
     }
     input[type="range"].audio-slider::-webkit-slider-runnable-track {
       height: 5px;
-      border-radius: 9999px;
-      background: linear-gradient(to right, #FF5500 var(--progress, 0%), #2A2A34 var(--progress, 0%));
+      border-radius: 999px;
     }
     input[type="range"].audio-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 13px;
-      height: 13px;
+      height: 15px;
+      width: 15px;
       border-radius: 50%;
-      background: #FFFFFF;
-      margin-top: -4px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-      transition: transform 0.15s ease, background-color 0.15s ease;
-    }
-    input[type="range"].audio-slider:hover::-webkit-slider-thumb {
-      transform: scale(1.25);
-      background: #FF5500;
-    }
-
-    /* Hide scrollbar on mobile filter chips */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    /* Smooth Card Hover Glow */
-    .card-editorial {
-      background-color: #16161B;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease, box-shadow 0.28s ease;
-    }
-    .card-editorial:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255, 85, 0, 0.45);
-      box-shadow: 0 12px 32px -12px rgba(255, 85, 0, 0.22);
-    }
-    .card-editorial.is-active-ep {
-      border-color: #FF5500;
-      box-shadow: 0 0 0 1px #FF5500, 0 12px 32px -10px rgba(255, 85, 0, 0.3);
+      background: #FF2E93;
+      border: 2.5px solid #141115;
+      box-shadow: 0 0 0 2px #FF7043;
+      margin-top: -5px;
+      transition: transform 0.15s ease;
     }
   </style>
 </head>
-<body class="bg-obsidian-950 text-[#F5F5F7] antialiased selection:bg-ember-500 selection:text-white">
 
-  <!-- Sticky Navigation Header -->
-  <header class="sticky top-0 z-40 h-[72px] bg-obsidian-950/85 backdrop-blur-xl border-b border-white/[0.08]">
-    <div class="max-w-6xl mx-auto h-full px-4 sm:px-6 flex items-center justify-between gap-4">
-      <!-- Brand Logo -->
-      <a href="#" class="inline-flex items-center gap-2.5 font-extrabold text-lg sm:text-xl tracking-tight group">
-        <span class="w-2.5 h-2.5 rounded-full bg-ember-500 shadow-[0_0_12px_#FF5500] group-hover:scale-125 transition-transform"></span>
-        <span>podcastsmanti<span class="text-ember-500">.id</span></span>
-      </a>
+<body class="antialiased selection:bg-smanti-pink selection:text-smanti-black pb-28 min-h-screen flex flex-col justify-between relative overflow-x-hidden">
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center gap-8" aria-label="Navigasi Utama">
-        <a href="#episodes" class="text-sm font-medium text-[#9A9AA2] hover:text-white transition-colors">Episode</a>
-        <a href="#about" class="text-sm font-medium text-[#9A9AA2] hover:text-white transition-colors">Tentang</a>
-        <a href="#submit-topic" class="text-sm font-medium text-[#9A9AA2] hover:text-white transition-colors">Kirim Topik</a>
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-smanti-black/95 backdrop-blur-md border-b-2 border-smanti-pink text-white transition-all shadow-md">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <button type="button" onclick="switchTab('beranda')" class="flex items-center gap-2.5 group focus:outline-none text-left">
+        <div id="navbar-logo-container" class="w-10 h-10 rounded-full bg-smanti-pink flex items-center justify-center p-0.5 shadow-sm ring-2 ring-smanti-pink group-hover:scale-105 transition-transform overflow-hidden shrink-0"></div>
+        <div class="flex flex-col">
+          <span class="font-display font-extrabold text-base sm:text-lg tracking-tight text-white leading-none">PODCAST SMANTI</span>
+          <span class="text-[10px] font-bold tracking-widest uppercase text-smanti-pink mt-0.5">ON AIR • SMAN 3</span>
+        </div>
+      </button>
+
+      <nav class="hidden md:flex items-center gap-1.5 text-sm font-semibold">
+        <button type="button" data-tab-target="beranda" class="nav-tab-btn px-3.5 py-2 rounded-full transition-all">Beranda</button>
+        <button type="button" data-tab-target="profil" class="nav-tab-btn px-3.5 py-2 rounded-full transition-all">Profil & Medsos</button>
+        <button type="button" data-tab-target="episode" class="nav-tab-btn px-3.5 py-2 rounded-full transition-all">Episode Podcast</button>
+        <button type="button" data-tab-target="anggota" class="nav-tab-btn px-3.5 py-2 rounded-full transition-all">Anggota</button>
       </nav>
 
-      <!-- Header Actions -->
-      <div class="flex items-center gap-2.5">
-        <button
-          type="button"
-          id="btn-quick-latest"
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ember-500 hover:bg-ember-400 active:scale-95 text-white text-xs sm:text-sm font-semibold shadow-[0_4px_20px_rgba(255,85,0,0.3)] transition-all"
-        >
-          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M8 5v14l11-7z" />
-          </svg>
-          <span>Dengar Terbaru</span>
-        </button>
-
-        <!-- Mobile Hamburger Button -->
-        <button
-          type="button"
-          id="btn-mobile-menu"
-          class="md:hidden w-10 h-10 rounded-xl border border-white/[0.08] bg-obsidian-900 flex flex-col items-center justify-center gap-1.5 text-white hover:border-ember-500/50 transition-colors"
-          aria-label="Buka menu"
-          aria-expanded="false"
-        >
-          <span class="w-4 h-0.5 bg-current rounded-full transition-transform" id="ham-top"></span>
-          <span class="w-4 h-0.5 bg-current rounded-full transition-transform" id="ham-bot"></span>
-        </button>
-      </div>
+      <button id="menu-toggle-btn" aria-label="Menu" class="md:hidden p-2.5 -mr-2 rounded-xl text-white hover:bg-smanti-charcoalSoft transition-all">
+        <svg id="icon-hamburger" class="w-6 h-6 text-smanti-pink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-close" class="w-6 h-6 text-smanti-pink hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
     </div>
 
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-obsidian-900/95 backdrop-blur-xl border-b border-white/[0.08] px-6 py-5">
-      <nav class="flex flex-col gap-4">
-        <a href="#episodes" class="mobile-nav-link text-base font-medium text-[#9A9AA2] hover:text-ember-500 transition-colors">Episode</a>
-        <a href="#about" class="mobile-nav-link text-base font-medium text-[#9A9AA2] hover:text-ember-500 transition-colors">Tentang Kami</a>
-        <a href="#submit-topic" class="mobile-nav-link text-base font-medium text-[#9A9AA2] hover:text-ember-500 transition-colors">Kirim Topik</a>
+    <div id="mobile-drawer" class="hidden md:hidden bg-smanti-charcoal border-b-2 border-smanti-pink shadow-2xl">
+      <nav class="max-w-3xl mx-auto px-5 py-2 divide-y divide-white/10 flex flex-col text-[15px] font-medium text-gray-200">
+        <button type="button" data-tab-target="beranda" class="mobile-nav-link nav-tab-btn w-full py-3.5 text-left flex items-center justify-between"><span>Beranda</span><span class="tab-badge text-xs font-mono px-2 py-0.5 rounded-full">01</span></button>
+        <button type="button" data-tab-target="profil" class="mobile-nav-link nav-tab-btn w-full py-3.5 text-left flex items-center justify-between"><span>Profil & Medsos</span><span class="tab-badge text-xs font-mono px-2 py-0.5 rounded-full">02</span></button>
+        <button type="button" data-tab-target="episode" class="mobile-nav-link nav-tab-btn w-full py-3.5 text-left flex items-center justify-between"><span>Episode Podcast</span><span class="tab-badge text-xs font-mono px-2 py-0.5 rounded-full">03</span></button>
+        <button type="button" data-tab-target="anggota" class="mobile-nav-link nav-tab-btn w-full py-3.5 text-left flex items-center justify-between"><span>Anggota</span><span class="tab-badge text-xs font-mono px-2 py-0.5 rounded-full">04</span></button>
       </nav>
     </div>
   </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="relative py-14 sm:py-20 lg:py-24 border-b border-white/[0.08] overflow-hidden">
-      <!-- Ambient Orange Studio Glow -->
-      <div class="pointer-events-none absolute -top-32 -right-24 w-[480px] h-[480px] rounded-full bg-ember-500/15 blur-[120px]"></div>
-      <div class="pointer-events-none absolute bottom-0 -left-32 w-[320px] h-[320px] rounded-full bg-ember-500/5 blur-[100px]"></div>
+  <div id="drawer-backdrop" class="fixed inset-0 bg-smanti-black/50 backdrop-blur-[2px] z-30 hidden md:hidden"></div>
 
-      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        <!-- Left Hero Copy -->
-        <div class="lg:col-span-7">
-          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-ember-500/10 border border-ember-500/40 font-mono text-xs font-semibold tracking-wider text-ember-400 mb-6">
-            <span class="w-2 h-2 rounded-full bg-ember-500 pulse-dot"></span>
-            <span>ON AIR &bull; SEASON 02</span>
+  <!-- MAIN CONTENT -->
+  <main class="max-w-3xl w-full mx-auto px-4 sm:px-6 flex-1">
+
+    <!-- TAB 1: BERANDA -->
+    <section id="tab-beranda" class="tab-panel pt-7 pb-10 sm:pt-10 sm:pb-12">
+      <div class="bg-smanti-dark-gradient text-white rounded-[28px] p-6 sm:p-8 border-2 border-smanti-pink shadow-card relative overflow-hidden mb-8">
+        <div class="relative flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8">
+          <div class="shrink-0 flex justify-start">
+            <div id="hero-logo-container" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-smanti-pink shadow-brand ring-4 ring-smanti-pink flex items-center justify-center p-1 overflow-hidden"></div>
           </div>
-
-          <h1 class="text-4xl sm:text-5xl lg:text-[3.65rem] font-extrabold leading-[1.08] tracking-tight mb-5">
-            Suara di Balik Cerita <span class="text-ember-500">SMANTI.</span>
-          </h1>
-
-          <p class="text-base sm:text-lg text-[#9A9AA2] max-w-xl leading-relaxed mb-8">
-            Obrolan jujur tanpa naskah kaku. Membahas keresahan pelajar, kisah alumni,
-            budaya pop, hingga cerita tak terduga langsung dari ruang siar kami.
-          </p>
-
-          <div class="flex flex-wrap items-center gap-3.5 mb-10">
-            <button
-              type="button"
-              id="btn-hero-play"
-              data-ep-id="ep-05"
-              class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-ember-500 hover:bg-ember-400 active:scale-95 text-white text-sm sm:text-base font-semibold shadow-[0_6px_26px_rgba(255,85,0,0.32)] transition-all"
-            >
-              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-              <span id="hero-play-label">Putar Episode Unggulan</span>
-            </button>
-
-            <a
-              href="#episodes"
-              class="inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] hover:border-white/20 text-sm sm:text-base font-semibold transition-all"
-            >
-              Jelajahi Arsip
-            </a>
-          </div>
-
-          <!-- Quick Studio Metrics -->
-          <div class="grid grid-cols-3 gap-4 sm:gap-8 pt-6 border-t border-white/[0.08] max-w-md">
-            <div>
-              <div class="font-mono text-xl sm:text-2xl font-bold text-white" id="stat-ep-count">05+</div>
-              <div class="text-xs text-[#686873] mt-0.5">Total Episode</div>
-            </div>
-            <div>
-              <div class="font-mono text-xl sm:text-2xl font-bold text-white">4 Segmen</div>
-              <div class="text-xs text-[#686873] mt-0.5">Kategori</div>
-            </div>
-            <div>
-              <div class="font-mono text-xl sm:text-2xl font-bold text-white">Tiap Jumat</div>
-              <div class="text-xs text-[#686873] mt-0.5">Rilis Rutin</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Featured Episode Card -->
-        <aside class="lg:col-span-5" aria-label="Episode Unggulan">
-          <div class="card-editorial rounded-2xl p-5">
-            <!-- Custom SVG Studio Cover Art -->
-            <div class="relative rounded-xl overflow-hidden aspect-[16/10] bg-obsidian-900 border border-white/[0.06] mb-4">
-              <svg class="w-full h-full object-cover" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <defs>
-                  <linearGradient id="featGrad" x1="0" y1="0" x2="640" y2="400" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#1E1410" />
-                    <stop offset="55%" stop-color="#121216" />
-                    <stop offset="100%" stop-color="#2D1306" />
-                  </linearGradient>
-                  <radialGradient id="featOrb" cx="0.78" cy="0.25" r="0.55">
-                    <stop offset="0%" stop-color="#FF5500" stop-opacity="0.45" />
-                    <stop offset="100%" stop-color="#FF5500" stop-opacity="0" />
-                  </radialGradient>
-                </defs>
-                <rect width="640" height="400" fill="url(#featGrad)" />
-                <rect width="640" height="400" fill="url(#featOrb)" />
-                <!-- Studio Grid Lines -->
-                <path d="M0 100H640M0 200H640M0 300H640M160 0V400M320 0V400M480 0V400" stroke="white" stroke-opacity="0.04" />
-                <!-- Stylized Soundwave Bars -->
-                <g fill="#FF5500" fill-opacity="0.85">
-                  <rect x="195" y="175" width="8" height="50" rx="4" />
-                  <rect x="215" y="145" width="8" height="110" rx="4" />
-                  <rect x="235" y="120" width="8" height="160" rx="4" />
-                  <rect x="255" y="155" width="8" height="90" rx="4" />
-                  <rect x="275" y="105" width="8" height="190" rx="4" />
-                  <rect x="295" y="135" width="8" height="130" rx="4" />
-                  <rect x="315" y="90" width="8" height="220" rx="4" />
-                  <rect x="335" y="140" width="8" height="120" rx="4" />
-                  <rect x="355" y="115" width="8" height="170" rx="4" />
-                  <rect x="375" y="160" width="8" height="80" rx="4" />
-                  <rect x="395" y="130" width="8" height="140" rx="4" />
-                  <rect x="415" y="168" width="8" height="64" rx="4" />
-                  <rect x="435" y="182" width="8" height="36" rx="4" />
-                </g>
-                <text x="28" y="368" fill="#F5F5F7" fill-opacity="0.45" font-family="monospace" font-size="13" letter-spacing="2">PODCASTSMANTI.ID // STUDIO 01</text>
-              </svg>
-
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-ember-500 text-white font-mono text-[11px] font-bold tracking-wider shadow">
-                TERBARU
-              </span>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-2 text-xs text-[#9A9AA2] mb-2">
-              <span class="font-mono font-semibold text-ember-500">EP. 05</span>
-              <span class="text-[#686873]">&bull;</span>
-              <span>Obrolan Santai</span>
-              <span class="text-[#686873]">&bull;</span>
-              <span class="font-mono">34:18</span>
-            </div>
-
-            <h2 class="text-lg sm:text-xl font-bold leading-snug mb-2">
-              Antara Ekspektasi Kelas XI, Organisasi, dan Tidur yang Terlambat
-            </h2>
-
-            <p class="text-sm text-[#9A9AA2] leading-relaxed mb-5">
-              Bincang santai bareng pengurus OSIS dan tim kreatif soal gimana cara membagi waktu tanpa kehilangan kewarasan.
-            </p>
-
-            <div class="flex items-center justify-between pt-4 border-t border-white/[0.08]">
-              <button
-                type="button"
-                id="btn-featured-circle"
-                data-ep-id="ep-05"
-                aria-label="Putar Episode 05"
-                class="w-11 h-11 rounded-full bg-ember-500 hover:bg-ember-400 active:scale-95 text-white flex items-center justify-center shadow-[0_4px_16px_rgba(255,85,0,0.4)] transition-all"
-              >
-                <svg class="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </button>
-
-              <button
-                type="button"
-                id="btn-featured-notes"
-                data-ep-id="ep-05"
-                class="text-sm font-semibold text-[#9A9AA2] hover:text-ember-500 transition-colors"
-              >
-                Lihat Show Notes &rarr;
-              </button>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- Episodes Explorer Section -->
-    <section id="episodes" class="py-16 sm:py-24 border-b border-white/[0.08]">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        <div class="flex flex-col gap-6 mb-10">
-          <div>
-            <span class="block font-mono text-xs font-semibold tracking-[0.15em] uppercase text-ember-500 mb-2">
-              ARSIP SIARAN
+          <div class="flex-1">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-extrabold tracking-wider uppercase bg-smanti-pink/20 border border-smanti-pink text-smanti-pink mb-3">
+              <span class="w-2 h-2 rounded-full bg-smanti-orange animate-ping"></span>
+              <span>SUARA & CERITA SEKOLAH</span>
             </span>
-            <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">Jelajah Episode</h2>
-          </div>
-
-          <!-- Search & Category Filter Controls -->
-          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-            <!-- Search Input -->
-            <div class="relative w-full lg:max-w-sm">
-              <svg class="w-4 h-4 text-[#686873] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input
-                type="search"
-                id="search-input"
-                placeholder="Cari judul, topik, atau tamu..."
-                aria-label="Cari episode podcast"
-                class="w-full bg-obsidian-850 border border-white/[0.08] focus:border-ember-500 rounded-full pl-11 pr-4 py-2.5 text-sm text-white placeholder-[#686873] outline-none transition-colors"
-              />
-            </div>
-
-            <!-- Filter Tabs -->
-            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1" role="tablist" aria-label="Filter Kategori">
-              <button type="button" class="filter-chip active px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-ember-500 text-white border border-ember-500 shrink-0 transition-all" data-cat="all">
-                Semua
-              </button>
-              <button type="button" class="filter-chip px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-obsidian-850 text-[#9A9AA2] hover:text-white border border-white/[0.08] shrink-0 transition-all" data-cat="Obrolan Santai">
-                Obrolan Santai
-              </button>
-              <button type="button" class="filter-chip px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-obsidian-850 text-[#9A9AA2] hover:text-white border border-white/[0.08] shrink-0 transition-all" data-cat="Inspirasi & Alumni">
-                Inspirasi &amp; Alumni
-              </button>
-              <button type="button" class="filter-chip px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-obsidian-850 text-[#9A9AA2] hover:text-white border border-white/[0.08] shrink-0 transition-all" data-cat="Keresahan Pelajar">
-                Keresahan Pelajar
-              </button>
-              <button type="button" class="filter-chip px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-obsidian-850 text-[#9A9AA2] hover:text-white border border-white/[0.08] shrink-0 transition-all" data-cat="Behind The Scenes">
-                Behind The Scenes
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Episode Cards Grid -->
-        <div id="episodes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" aria-live="polite"></div>
-
-        <!-- Empty State -->
-        <div id="episodes-empty" class="hidden text-center py-16 px-6 rounded-2xl bg-obsidian-850 border border-dashed border-white/15">
-          <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-ember-500/15 text-ember-500 flex items-center justify-center">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
-              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-              <line x1="12" y1="19" x2="12" y2="23"></line>
-              <line x1="8" y1="23" x2="16" y2="23"></line>
-            </svg>
-          </div>
-          <h3 class="text-lg font-bold mb-1">Episode tidak ditemukan</h3>
-          <p class="text-sm text-[#9A9AA2] mb-5">Coba kata kunci lain atau kembalikan filter ke semua kategori.</p>
-          <button type="button" id="btn-reset-filter" class="px-5 py-2 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-sm font-semibold transition-colors">
-            Reset Pencarian
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- About & Studio Crew Section -->
-    <section id="about" class="py-16 sm:py-24 border-b border-white/[0.08]">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-        <!-- Story Left -->
-        <div class="lg:col-span-6">
-          <span class="block font-mono text-xs font-semibold tracking-[0.15em] uppercase text-ember-500 mb-2">
-            TENTANG KAMI
-          </span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight mb-5">
-            Dari Ruang Kecil, Untuk Didengar Luas.
-          </h2>
-          <p class="text-[#9A9AA2] text-sm sm:text-base leading-relaxed mb-4">
-            <strong class="text-white">podcastsmanti.id</strong> lahir dari inisiatif kreatif siswa untuk mendokumentasikan cerita,
-            perspektif, dan dinamika kehidupan sekolah dalam format audio yang hangat dan apa adanya.
-          </p>
-          <p class="text-[#9A9AA2] text-sm sm:text-base leading-relaxed mb-8">
-            Tanpa skrip yang kaku, setiap episode dirancang seperti obrolan sepulang sekolah—mengangkat topik
-            akademik, seni, organisasi, hingga cerita alumni yang sedang merintis jalan mereka.
-          </p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="p-4 rounded-xl bg-obsidian-850 border border-white/[0.08] flex items-start gap-3.5">
-              <span class="font-mono text-xs font-bold text-ember-500 bg-ember-500/15 px-2.5 py-1.5 rounded-lg">01</span>
-              <div>
-                <h3 class="text-sm font-bold mb-1">100% Suara Siswa</h3>
-                <p class="text-xs text-[#9A9AA2] leading-relaxed">Diproduksi, direkam, dan disunting mandiri oleh tim kreatif sekolah.</p>
-              </div>
-            </div>
-            <div class="p-4 rounded-xl bg-obsidian-850 border border-white/[0.08] flex items-start gap-3.5">
-              <span class="font-mono text-xs font-bold text-ember-500 bg-ember-500/15 px-2.5 py-1.5 rounded-lg">02</span>
-              <div>
-                <h3 class="text-sm font-bold mb-1">Ruang Aman Cerita</h3>
-                <p class="text-xs text-[#9A9AA2] leading-relaxed">Membahas isu relevan pelajar dengan sudut pandang jujur &amp; membangun.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hosts Panel Right -->
-        <div class="lg:col-span-6 rounded-2xl bg-obsidian-850 border border-white/[0.08] p-5 sm:p-6">
-          <div class="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.08]">
-            <h3 class="text-lg font-bold">Di Balik Mikrofon</h3>
-            <span class="font-mono text-xs text-ember-500 bg-ember-500/10 border border-ember-500/30 px-2.5 py-1 rounded-full">TIM SIAR</span>
-          </div>
-
-          <div id="hosts-list" class="flex flex-col gap-4"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Listener Topic Submission Section -->
-    <section id="submit-topic" class="py-16 sm:py-24">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        <div class="rounded-3xl bg-obsidian-850 border border-white/[0.08] p-6 sm:p-10 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          <!-- Left Info & Recent Listener Feed -->
-          <div class="lg:col-span-5">
-            <span class="block font-mono text-xs font-semibold tracking-[0.15em] uppercase text-ember-500 mb-2">
-              SUARA PENDENGAR
-            </span>
-            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-3">
-              Punya Cerita atau Ide Topik?
-            </h2>
-            <p class="text-sm sm:text-base text-[#9A9AA2] leading-relaxed mb-6">
-              Kirimkan topik bahasan, rekomendasi bintang tamu, atau curhatan anonim yang ingin kamu dengar di episode berikutnya.
+            <h1 class="font-display font-extrabold text-2xl sm:text-4xl text-white leading-[1.16] tracking-tight mb-3">
+              Wadah kreativitas dan <span class="text-smanti-pink">obrolan inspiratif</span> di sekolah kami.
+            </h1>
+            <p class="text-gray-300 text-[14.5px] sm:text-base leading-relaxed mb-5">
+              PODCAST SMANTI adalah media penyiaran audio dan ruang diskusi siswa yang merekam setiap cerita, aspirasi, prestasi, serta dinamika kehidupan sekolah secara hangat dan santai.
             </p>
-
-            <!-- Live Aspirations Preview -->
-            <div class="rounded-xl bg-obsidian-900/90 border border-white/[0.06] p-4">
-              <div class="flex items-center justify-between mb-3">
-                <span class="font-mono text-[11px] uppercase tracking-wider text-[#9A9AA2]">Aspirasi Masuk Terbaru</span>
-                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-              </div>
-              <ul id="aspirations-feed" class="space-y-2.5 text-xs">
-                <li class="p-2.5 rounded-lg bg-obsidian-850 border border-white/[0.05]">
-                  <div class="flex justify-between text-[#686873] font-mono mb-1">
-                    <span>Anonim XII</span>
-                    <span class="text-ember-500">Keresahan Pelajar</span>
-                  </div>
-                  <p class="text-[#D1D1D6]">"Bahas tips bagi waktu antara les UTBK sama kegiatan ekskul dong kak!"</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Right Submission Form -->
-          <form id="topic-form" class="lg:col-span-7 flex flex-col gap-4" novalidate>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label for="sender-name" class="block text-xs font-semibold text-white mb-1.5">
-                  Nama / Inisial <span class="text-[#686873] font-normal">(Opsional)</span>
-                </label>
-                <input
-                  type="text"
-                  id="sender-name"
-                  placeholder="Misal: Anak XI.10 atau Anonim"
-                  class="w-full bg-obsidian-900 border border-white/[0.08] focus:border-ember-500 rounded-xl px-4 py-3 text-sm text-white placeholder-[#686873] outline-none transition-colors"
-                />
-              </div>
-
-              <div>
-                <label for="topic-segment" class="block text-xs font-semibold text-white mb-1.5">
-                  Segmen Pilihan
-                </label>
-                <select
-                  id="topic-segment"
-                  class="w-full bg-obsidian-900 border border-white/[0.08] focus:border-ember-500 rounded-xl px-4 py-3 text-sm text-white outline-none transition-colors"
-                >
-                  <option value="Obrolan Santai">Obrolan Santai</option>
-                  <option value="Inspirasi & Alumni">Inspirasi &amp; Alumni</option>
-                  <option value="Keresahan Pelajar">Keresahan Pelajar</option>
-                  <option value="Salam & Titip Pesan">Salam &amp; Titip Pesan</option>
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label for="topic-message" class="block text-xs font-semibold text-white mb-1.5">
-                Ide Topik / Pesanmu <span class="text-ember-500">*</span>
-              </label>
-              <textarea
-                id="topic-message"
-                rows="4"
-                placeholder="Tulis ide obrolan, pertanyaan, atau cerita singkatmu di sini..."
-                class="w-full bg-obsidian-900 border border-white/[0.08] focus:border-ember-500 rounded-xl px-4 py-3 text-sm text-white placeholder-[#686873] outline-none transition-colors resize-y"
-                required
-              ></textarea>
-            </div>
-
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
-              <p id="form-feedback" class="text-xs font-medium min-h-[18px]" role="status" aria-live="polite"></p>
-
-              <button
-                type="submit"
-                class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-ember-500 hover:bg-ember-400 active:scale-95 text-white text-sm font-semibold shadow-[0_4px_20px_rgba(255,85,0,0.28)] transition-all shrink-0"
-              >
-                <span>Kirim ke Studio</span>
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="22" y1="2" x2="11" y2="13"></line>
-                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                </svg>
+            <div class="flex flex-wrap items-center gap-3">
+              <button type="button" id="btn-play-latest" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-smanti-gradient text-white font-bold text-sm shadow-brand hover:opacity-95 active:scale-95 transition-all">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <span>Putar Episode Terbaru</span>
+              </button>
+              <button type="button" onclick="switchTab('episode')" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white text-smanti-black font-extrabold text-sm hover:bg-smanti-pinkLight active:scale-95 transition-all border-2 border-smanti-black">
+                <span>Lihat Semua Episode →</span>
               </button>
             </div>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Site Footer -->
-  <footer id="site-footer" class="bg-obsidian-900 border-t border-white/[0.08] py-12 transition-all">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div class="text-center sm:text-left">
-        <a href="#" class="inline-flex items-center gap-2 font-extrabold text-lg">
-          <span class="w-2.5 h-2.5 rounded-full bg-ember-500"></span>
-          <span>podcastsmanti<span class="text-ember-500">.id</span></span>
-        </a>
-        <p class="text-xs text-[#686873] mt-1.5">Ruang dengar independen pelajar. Mengudara dengan cerita autentik.</p>
-      </div>
-
-      <div class="flex items-center gap-6 text-sm text-[#9A9AA2]">
-        <a href="#episodes" class="hover:text-ember-500 transition-colors">Semua Episode</a>
-        <a href="#about" class="hover:text-ember-500 transition-colors">Tentang Kami</a>
-        <a href="#submit-topic" class="hover:text-ember-500 transition-colors">Kirim Topik</a>
-      </div>
-    </div>
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 mt-8 pt-6 border-t border-white/[0.06] text-center text-xs text-[#686873]">
-      &copy; <span id="year-now">2026</span> podcastsmanti.id. Hak cipta dilindungi.
-    </div>
-  </footer>
-
-  <!-- Modal Detail Show Notes -->
-  <div
-    id="notes-modal"
-    class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md p-4 flex items-center justify-center"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="modal-title"
-  >
-    <div class="relative w-full max-w-2xl max-h-[88vh] overflow-y-auto rounded-2xl bg-obsidian-850 border border-white/15 p-5 sm:p-8 shadow-2xl">
-      <button
-        type="button"
-        id="btn-close-modal"
-        aria-label="Tutup modal"
-        class="absolute top-4 right-4 w-9 h-9 rounded-full bg-obsidian-900 hover:bg-ember-500 border border-white/10 text-white flex items-center justify-center transition-colors"
-      >
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-
-      <div class="flex flex-col sm:flex-row gap-5 items-start sm:items-center pb-6 mb-6 border-b border-white/[0.08]">
-        <div id="modal-art" class="w-24 h-24 rounded-xl overflow-hidden shrink-0 border border-white/10"></div>
-        <div class="pr-6">
-          <div class="flex flex-wrap items-center gap-2 text-xs text-[#9A9AA2] mb-1.5">
-            <span id="modal-num" class="font-mono font-bold text-ember-500">EP. 05</span>
-            <span>&bull;</span>
-            <span id="modal-cat">Obrolan Santai</span>
-            <span>&bull;</span>
-            <span id="modal-date" class="font-mono">08 Nov 2026</span>
           </div>
-          <h2 id="modal-title" class="text-lg sm:text-xl font-bold leading-snug mb-1.5">Judul Episode</h2>
-          <p id="modal-guests" class="text-xs text-[#9A9AA2] mb-3.5">Host &amp; Tamu</p>
-          <button
-            type="button"
-            id="btn-modal-play"
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ember-500 hover:bg-ember-400 text-white text-xs font-semibold transition-colors"
-          >
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-            <span>Putar Episode Ini</span>
-          </button>
         </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3 sm:gap-4 mb-8">
+        <div class="bg-smanti-cream rounded-2xl p-3.5 sm:p-4 border-2 border-smanti-black shadow-sticker text-center text-smanti-black">
+          <p id="stat-total-episodes" class="font-display font-extrabold text-xl sm:text-2xl text-smanti-pink">4</p>
+          <p class="text-[11px] sm:text-xs font-bold mt-0.5">Episode Rilis</p>
+        </div>
+        <div class="bg-smanti-cream rounded-2xl p-3.5 sm:p-4 border-2 border-smanti-black shadow-sticker text-center text-smanti-black">
+          <p id="stat-total-members" class="font-display font-extrabold text-xl sm:text-2xl text-smanti-magenta">8</p>
+          <p class="text-[11px] sm:text-xs font-bold mt-0.5">Kru & Pengurus</p>
+        </div>
+        <div class="bg-smanti-cream rounded-2xl p-3.5 sm:p-4 border-2 border-smanti-black shadow-sticker text-center text-smanti-black">
+          <p id="stat-total-socials" class="font-display font-extrabold text-xl sm:text-2xl text-smanti-orange">4</p>
+          <p class="text-[11px] sm:text-xs font-bold mt-0.5">Kanal Resmi</p>
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <div class="flex items-center justify-between mb-3.5">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-smanti-pink text-smanti-black text-[11px] font-extrabold tracking-wider uppercase">🔥 EPISODE TERBARU</span>
+          <button type="button" onclick="switchTab('episode')" class="text-xs font-extrabold text-smanti-pink hover:underline">Buka Arsip Lengkap →</button>
+        </div>
+        <div id="beranda-featured-episode"></div>
       </div>
 
       <div>
-        <h3 class="text-sm font-bold uppercase tracking-wider font-mono text-ember-500 mb-2">Catatan Episode (Show Notes)</h3>
-        <p id="modal-desc" class="text-sm text-[#9A9AA2] leading-relaxed mb-6"></p>
+        <h2 class="font-display font-extrabold text-lg text-white mb-3">Jelajahi Halaman PODCAST SMANTI</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+          <button type="button" onclick="switchTab('episode')" class="text-left bg-smanti-cream p-4 rounded-2xl border-2 border-smanti-black shadow-sticker hover:bg-smanti-pinkLight transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#FF2E93] to-[#FF7043] text-white flex items-center justify-center mb-3 text-xl shadow-md ring-2 ring-smanti-black group-hover:scale-105 transition-transform">🎧</div>
+            <h3 class="font-display font-extrabold text-smanti-black text-base mb-1">Episode Podcast</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mb-3">Dengarkan seluruh rekaman audio berdasarkan kategori.</p>
+            <span class="text-xs font-extrabold text-smanti-pink">Buka Tab Episode →</span>
+          </button>
+          
+          <button type="button" onclick="switchTab('profil')" class="text-left bg-smanti-cream p-4 rounded-2xl border-2 border-smanti-black shadow-sticker hover:bg-smanti-pinkLight transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#D91B74] to-[#A80D56] text-white flex items-center justify-center mb-3 text-xl shadow-md ring-2 ring-smanti-black group-hover:scale-105 transition-transform">📱</div>
+            <h3 class="font-display font-extrabold text-smanti-black text-base mb-1">Profil & Medsos</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mb-3">Kenali profil organisasi & ikuti YouTube, Instagram, Spotify kami.</p>
+            <span class="text-xs font-extrabold text-smanti-magenta">Buka Tab Profil →</span>
+          </button>
+          
+          <button type="button" onclick="switchTab('anggota')" class="text-left bg-smanti-cream p-4 rounded-2xl border-2 border-smanti-black shadow-sticker hover:bg-smanti-pinkLight transition-all group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#FF7043] to-[#FFA726] text-white flex items-center justify-center mb-3 text-xl shadow-md ring-2 ring-smanti-black group-hover:scale-105 transition-transform">👥</div>
+            <h3 class="font-display font-extrabold text-smanti-black text-base mb-1">Struktur Anggota</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mb-3">Lihat jajaran Ketua, Wakil Ketua, serta tim kreatif di balik layar.</p>
+            <span class="text-xs font-extrabold text-smanti-orange">Buka Tab Anggota →</span>
+          </button>
+        </div>
+      </div>
+    </section>
 
-        <h3 class="text-sm font-bold uppercase tracking-wider font-mono text-ember-500 mb-3">Penanda Waktu (Klik untuk Lompat)</h3>
-        <ul id="modal-timestamps" class="space-y-2"></ul>
+    <!-- TAB 2: PROFIL & MEDSOS -->
+    <section id="tab-profil" class="tab-panel hidden pt-7 pb-10 sm:pt-10 sm:pb-12">
+      <div class="mb-7">
+        <span class="inline-block px-2.5 py-0.5 rounded-md bg-smanti-pink text-smanti-black text-[11px] font-extrabold tracking-wider uppercase mb-2">TENTANG PODCAST SMANTI</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-[34px] text-white leading-tight mb-3">
+          Menghubungkan Ide <span class="text-smanti-gradient">Lewat Suara.</span>
+        </h2>
+        <p class="text-gray-200 text-[15px] leading-relaxed">
+          Berdiri sebagai bagian dari ekosistem kreatif siswa SMAN 3 (SMANTI), tim kami memproduksi siaran berkala mulai dari bincang santai seputar kehidupan pelajar, liputan khusus kegiatan sekolah, hingga wawancara eksklusif bersama guru, alumni, dan siswa berprestasi.
+        </p>
+      </div>
+
+      <div class="mb-9">
+        <h3 class="text-xs font-extrabold tracking-[0.16em] uppercase text-smanti-pink mb-3.5">PILAR KONTEN UTAMA</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+          <div class="bg-smanti-cream p-4 rounded-2xl border-2 border-smanti-black shadow-sticker text-smanti-black">
+            <div class="w-10 h-10 rounded-xl bg-smanti-pink text-smanti-black font-bold flex items-center justify-center mb-3 text-lg">🎙️</div>
+            <h4 class="font-bold text-sm mb-1">Obrolan Santai</h4>
+            <p class="text-xs text-gray-600 leading-relaxed">Ruang aman berbagi cerita, tips belajar, dan keseharian khas anak SMA.</p>
+          </div>
+          <div class="bg-smanti-cream p-4 rounded-2xl border-2 border-smanti-black shadow-sticker text-smanti-black">
+            <div class="w-10 h-10 rounded-xl bg-smanti-magenta text-white font-bold flex items-center justify-center mb-3 text-lg">✨</div>
+            <h4 class="font-bold text-sm mb-1">Edukasi & Prestasi</h4>
+            <p class="text-xs text-gray-600 leading-relaxed">Mengulik kisah di balik layar para peraih prestasi akademik maupun non-akademik.</p>
+          </div>
+          <div class="bg-smanti-cream p-4 rounded-2xl border-2 border-smanti-black shadow-sticker text-smanti-black">
+            <div class="w-10 h-10 rounded-xl bg-smanti-orange text-white font-bold flex items-center justify-center mb-3 text-lg">📢</div>
+            <h4 class="font-bold text-sm mb-1">Suara Siswa</h4>
+            <p class="text-xs text-gray-600 leading-relaxed">Rekaman aspirasi dan liputan langsung dari kemeriahan pensi, classmeeting, dan OSIS.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-smanti-dark-gradient text-white rounded-[26px] p-5 sm:p-7 border-2 border-smanti-pink shadow-card">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5 pb-4 border-b border-white/10">
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider text-smanti-pink mb-1">
+              <span class="w-2 h-2 rounded-full bg-smanti-orange"></span> KANAL RESMI & MEDIA SOSIAL
+            </span>
+            <h3 class="font-display font-extrabold text-xl sm:text-2xl text-white">Ikuti & Dengarkan Kami di Semua Platform</h3>
+          </div>
+          <span class="text-xs font-medium text-gray-400">Klik kartu untuk membuka akun</span>
+        </div>
+        <div id="social-links-profil" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5"></div>
+      </div>
+    </section>
+
+    <!-- TAB 3: EPISODE PODCAST -->
+    <section id="tab-episode" class="tab-panel hidden pt-7 pb-10 sm:pt-10 sm:pb-12">
+      <div class="mb-6">
+        <span class="inline-block px-2.5 py-0.5 rounded-md bg-smanti-pink text-smanti-black text-[11px] font-extrabold tracking-wider uppercase mb-2">ARSIP AUDIO & SIARAN</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-[34px] text-white leading-tight tracking-tight mb-2.5">
+          Dokumentasi <span class="text-smanti-gradient">PODCAST SMANTI</span>
+        </h2>
+        <p class="text-gray-200 text-[15px] leading-relaxed max-w-xl">
+          Rekaman audio penuh disimpan di folder lokal `assets` — halaman ini adalah etalase pemutarnya.
+        </p>
+      </div>
+
+      <div id="category-filters" class="flex flex-wrap gap-2.5 mb-7"></div>
+
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+        <p id="episode-counter" class="text-xs font-bold text-smanti-pink">Menampilkan semua episode</p>
+        <div class="relative w-full sm:w-64">
+          <input type="text" id="search-episode" placeholder="Cari judul atau narasumber..." class="w-full pl-9 pr-4 py-2 text-sm bg-white border-2 border-smanti-black text-smanti-black rounded-full focus:outline-none focus:border-smanti-pink focus:ring-2 focus:ring-smanti-pink/50 transition-all" />
+          <svg class="w-4 h-4 text-smanti-black absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+      </div>
+
+      <div id="episodes-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-5"></div>
+    </section>
+
+    <!-- TAB 4: ANGGOTA -->
+    <section id="tab-anggota" class="tab-panel hidden pt-7 pb-10 sm:pt-10 sm:pb-12">
+      <div class="mb-8">
+        <span class="inline-block px-2.5 py-0.5 rounded-md bg-smanti-pink text-smanti-black text-[11px] font-extrabold tracking-wider uppercase mb-2">TIM DI BALIK LAYAR</span>
+        <h2 id="periode-title" class="font-display font-extrabold text-3xl text-white leading-tight">
+          Struktur Kepengurusan <span class="text-smanti-gradient">2026/2027</span>
+        </h2>
+      </div>
+
+      <div class="mb-10">
+        <div class="flex items-center justify-center gap-2.5 mb-5">
+          <span class="h-0.5 w-8 bg-smanti-pink"></span>
+          <h3 class="text-center text-xs font-extrabold tracking-[0.18em] uppercase text-smanti-pink">KETUA & WAKIL KETUA</h3>
+          <span class="h-0.5 w-8 bg-smanti-pink"></span>
+        </div>
+        <div id="pengurus-inti-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"></div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-center gap-2.5 mb-5">
+          <span class="h-0.5 w-8 bg-smanti-pink"></span>
+          <h3 class="text-center text-xs font-extrabold tracking-[0.18em] uppercase text-smanti-pink">ANGGOTA PODCAST SMANTI</h3>
+          <span class="h-0.5 w-8 bg-smanti-pink"></span>
+        </div>
+        <div id="anggota-biasa-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER GELAP ELEGAN (SERAGAM DI SEMUA TAB) -->
+  <footer class="bg-[#141115] text-white border-t-2 border-smanti-pink mt-12">
+    <div class="max-w-3xl mx-auto px-5 sm:px-6 py-10">
+      
+      <div class="mb-8 pb-8 border-b border-white/15">
+        <div class="flex items-center gap-3 mb-3">
+          <div id="footer-logo-container" class="w-10 h-10 rounded-full bg-smanti-pink p-0.5 flex items-center justify-center shrink-0 ring-2 ring-smanti-pink"></div>
+          <div>
+            <p class="font-display font-extrabold text-base text-white tracking-wide">PODCAST SMANTI</p>
+            <p class="text-xs text-smanti-pink font-semibold">Mengabadikan cerita. Menyampaikan informasi.</p>
+          </div>
+        </div>
+        
+        <a href="https://instagram.com/podcast.smanti" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 mt-3 px-4 py-2.5 rounded-2xl bg-smanti-charcoal border border-white/15 hover:border-smanti-pink transition-all group">
+          <svg class="w-5 h-5 text-smanti-pink group-hover:scale-110 transition-transform fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <div class="text-left">
+            <p class="text-xs font-bold text-white group-hover:text-smanti-pink transition-colors">Instagram PODCAST SMANTI</p>
+            <p class="text-[11px] text-gray-400">@podcast.smanti</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 pb-8 border-b border-white/15 text-sm font-semibold">
+        <button type="button" onclick="switchTab('beranda')" class="text-left text-gray-300 hover:text-smanti-pink transition-colors">Beranda</button>
+        <button type="button" onclick="switchTab('episode')" class="text-left text-gray-300 hover:text-smanti-pink transition-colors">Dokumentasi (Episode)</button>
+        <button type="button" onclick="switchTab('profil')" class="text-left text-gray-300 hover:text-smanti-pink transition-colors">Profil</button>
+        <button type="button" onclick="switchTab('anggota')" class="text-left text-gray-300 hover:text-smanti-pink transition-colors">Anggota</button>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+        <p>Ada bug atau saran? Hubungi <a href="https://forms.gle/contoh" target="_blank" rel="noopener noreferrer" class="text-smanti-pink font-bold underline hover:text-white transition-colors">Tim IT SMANTI via Google Form</a></p>
+        <div class="flex items-center gap-3">
+          <span>© <span id="footer-year">2026</span> PODCAST SMANTI</span>
+          <button type="button" id="btn-share-web" class="px-3.5 py-1.5 rounded-full bg-smanti-pink text-smanti-black font-extrabold hover:bg-white transition-all">Salin Tautan</button>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- MINI AUDIO PLAYER -->
+  <div id="mini-player" class="fixed bottom-0 inset-x-0 z-50 bg-smanti-black/95 backdrop-blur-lg border-t-2 border-smanti-pink text-white shadow-player transform translate-y-full transition-transform duration-300">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-2.5 sm:py-3">
+      <div class="flex items-center gap-2.5 mb-1.5">
+        <span id="player-current-time" class="text-[11px] font-mono font-semibold text-smanti-pink w-9 text-right">0:00</span>
+        <div class="relative flex-1 flex items-center">
+          <input type="range" id="player-seek-bar" min="0" max="100" value="0" step="0.1" aria-label="Durasi Audio" class="audio-slider w-full z-10" />
+          <div class="w-full h-[5px] bg-white/15 rounded-full absolute pointer-events-none overflow-hidden">
+            <div id="player-progress-fill" class="h-full bg-smanti-gradient w-0 transition-all duration-75"></div>
+          </div>
+        </div>
+        <span id="player-duration" class="text-[11px] font-mono text-gray-400 w-9">0:00</span>
+      </div>
+
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3 min-w-0 flex-1">
+          <div class="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-smanti-charcoalSoft shrink-0 border border-smanti-pink">
+            <img id="player-cover" src="" alt="Cover Episode" class="w-full h-full object-cover" />
+            <div id="player-eq-badge" class="hidden absolute inset-0 bg-smanti-black/60 flex items-end justify-center gap-0.5 pb-2">
+              <span class="w-1 bg-white rounded-full"></span>
+              <span class="w-1 bg-smanti-pink rounded-full"></span>
+              <span class="w-1 bg-smanti-orange rounded-full"></span>
+            </div>
+          </div>
+          <div class="min-w-0 flex-1">
+            <p id="player-category" class="text-[10px] font-extrabold uppercase tracking-wider text-smanti-orange truncate">PODCAST SMANTI</p>
+            <h4 id="player-title" class="text-xs sm:text-sm font-bold text-white truncate">Pilih episode untuk memutar</h4>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <button id="btn-rewind" title="Mundur 10 detik" class="p-2 rounded-full text-gray-300 hover:text-white hover:bg-white/10 active:scale-90 transition-all">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z"/></svg>
+          </button>
+          <button id="btn-main-play" aria-label="Putar atau Jeda" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-smanti-gradient text-white flex items-center justify-center shadow-brand ring-2 ring-smanti-pink hover:opacity-95 active:scale-95 transition-all">
+            <svg id="main-play-icon" class="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="main-pause-icon" class="w-5 h-5 fill-current hidden" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <button id="btn-forward" title="Maju 10 detik" class="p-2 rounded-full text-gray-300 hover:text-white hover:bg-white/10 active:scale-90 transition-all">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z"/></svg>
+          </button>
+          <button id="btn-close-player" title="Tutup" class="p-1.5 ml-0.5 rounded-full text-gray-400 hover:text-smanti-pink hover:bg-white/10 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Persistent Sticky Bottom Audio Player -->
-  <aside
-    id="sticky-player"
-    class="hidden fixed bottom-0 inset-x-0 z-40 bg-obsidian-900/95 backdrop-blur-xl border-t border-white/15 py-3 shadow-[0_-10px_35px_rgba(0,0,0,0.65)]"
-    aria-label="Pemutar Audio Podcast"
-  >
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-12 items-center gap-3 md:gap-6">
-      <!-- Track Info -->
-      <div class="md:col-span-4 flex items-center gap-3 min-w-0">
-        <div id="player-thumb" class="w-11 h-11 rounded-lg overflow-hidden shrink-0 border border-white/10"></div>
-        <div class="min-w-0 flex-1">
-          <div class="flex items-center gap-2">
-            <span id="player-ep-meta" class="font-mono text-[11px] font-semibold text-ember-500 truncate">EP. 05 &bull; Obrolan Santai</span>
-            <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-ember-500/15 font-mono text-[9px] text-ember-400">STUDIO AUDIO</span>
-          </div>
-          <p id="player-ep-title" class="text-xs sm:text-sm font-bold text-white truncate">Judul Episode</p>
-        </div>
-      </div>
+  <div id="toast-box" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300">
+    <div id="toast-message" class="bg-smanti-black text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full shadow-lg border-2 border-smanti-pink flex items-center gap-2"><span>Pesan</span></div>
+  </div>
 
-      <!-- Main Playback Controls & Progress Scrubber -->
-      <div class="md:col-span-5 flex flex-col gap-1.5">
-        <div class="flex items-center justify-center gap-5">
-          <!-- Rewind 15s -->
-          <button type="button" id="btn-rw-15" title="Mundur 15 detik" aria-label="Mundur 15 detik" class="relative text-[#9A9AA2] hover:text-white transition-colors p-1">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-              <path d="M3 3v5h5"></path>
-            </svg>
-            <span class="font-mono text-[9px] font-bold block -mt-1">15</span>
-          </button>
+  <audio id="podcast-audio-engine" preload="metadata"></audio>
 
-          <!-- Play / Pause -->
-          <button
-            type="button"
-            id="btn-player-toggle"
-            aria-label="Putar atau Jeda"
-            class="w-10 h-10 rounded-full bg-ember-500 hover:bg-ember-400 active:scale-95 text-white flex items-center justify-center shadow-[0_0_16px_rgba(255,85,0,0.4)] transition-all"
-          >
-            <svg id="player-icon-play" class="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-            <svg id="player-icon-pause" class="hidden w-5 h-5 fill-current" viewBox="0 0 24 24">
-              <rect x="6" y="4" width="4" height="16"></rect>
-              <rect x="14" y="4" width="4" height="16"></rect>
-            </svg>
-          </button>
-
-          <!-- Forward 15s -->
-          <button type="button" id="btn-ff-15" title="Maju 15 detik" aria-label="Maju 15 detik" class="relative text-[#9A9AA2] hover:text-white transition-colors p-1">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
-              <path d="M21 3v5h-5"></path>
-            </svg>
-            <span class="font-mono text-[9px] font-bold block -mt-1">15</span>
-          </button>
-        </div>
-
-        <!-- Scrubber Bar -->
-        <div class="flex items-center gap-2.5">
-          <span id="player-current-time" class="font-mono text-[11px] text-[#9A9AA2] w-10 text-right">00:00</span>
-          <input
-            type="range"
-            id="player-scrubber"
-            min="0"
-            max="100"
-            step="0.1"
-            value="0"
-            aria-label="Progres waktu audio"
-            class="audio-slider flex-1"
-          />
-          <span id="player-total-time" class="font-mono text-[11px] text-[#686873] w-10">34:18</span>
-        </div>
-      </div>
-
-      <!-- Speed & Volume Controls (Desktop/Tablet) -->
-      <div class="hidden md:flex md:col-span-3 items-center justify-end gap-3">
-        <button
-          type="button"
-          id="btn-playback-speed"
-          title="Kecepatan putar"
-          class="font-mono text-xs font-semibold px-2.5 py-1 rounded-full bg-obsidian-850 border border-white/10 text-[#9A9AA2] hover:text-white hover:border-ember-500/50 transition-colors"
-        >
-          1x
-        </button>
-
-        <div class="flex items-center gap-2">
-          <button type="button" id="btn-mute-toggle" aria-label="Bisukan suara" class="text-[#9A9AA2] hover:text-white transition-colors">
-            <svg id="vol-icon-on" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            </svg>
-            <svg id="vol-icon-off" class="hidden w-4 h-4 text-ember-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <line x1="23" y1="9" x2="17" y2="15"></line>
-              <line x1="17" y1="9" x2="23" y2="15"></line>
-            </svg>
-          </button>
-          <input
-            type="range"
-            id="player-volume"
-            min="0"
-            max="1"
-            step="0.05"
-            value="0.7"
-            aria-label="Kontrol volume"
-            class="audio-slider w-20"
-            style="--progress: 70%"
-          />
-        </div>
-      </div>
-    </div>
-  </aside>
-
+  <!-- SCRIPT & DATA LOKAL (ASSETS) -->
   <script>
-    /**
-     * podcastsmanti.id — Interactive Studio Engine
-     * Single-file architecture dengan Web Audio API Studio Synthesizer & Real-time Scrubber
-     */
-    document.addEventListener("DOMContentLoaded", () => {
-      // 1. Database Episode Podcast
-      const EPISODES = [
-        {
-          id: "ep-05",
-          number: "EP. 05",
-          title: "Antara Ekspektasi Kelas XI, Organisasi, dan Tidur yang Terlambat",
-          category: "Obrolan Santai",
-          date: "08 Nov 2026",
-          durationStr: "05:40",
-          durationSec: 340,
-          accentHue: "#FF5500",
-          guests: "Host: Raka & Nadya • Tamu: Pengurus OSIS",
-          excerpt: "Bincang santai bareng pengurus OSIS dan tim kreatif soal gimana cara membagi waktu tanpa kehilangan kewarasan.",
-          audioUrl: "podcastsmantieps1.mp3",
-          description:
-            "Masuk tahun kedua di SMA sering kali jadi fase paling padat: tugas mulai menumpuk, kepanitiaan jalan terus, dan persiapan masa depan mulai menghantui. Di episode kelima ini, kita ngobrol jujur tentang realita manajemen waktu anak organisasi dan trik bertahan hidup di jam-jam rawan ngantuk.",
-          timestamps: [
-            { time: "00:00", sec: 0, label: "Intro & Kabar Minggu Ini" },
-            { time: "02:40", sec: 340, label: "Mitos 'Anak Organisasi Pasti Keteteran Pelajaran'" },
-            { time: "03:15", sec: 975, label: "Cara Menolak Tugas Tambahan Tanpa Rasa Bersalah" },
-            { time: "05:40", sec: 1670, label: "Pesan Buat Adik Kelas yang Baru Gabung Ekskul" }
-          ],
-        },
-        {
-          id: "ep-04",
-          number: "EP. 04",
-          title: "Dari Bangku Belakang ke Kampus Impian: Cerita Alumni",
-          category: "Inspirasi & Alumni",
-          date: "01 Nov 2026",
-          durationStr: "41:05",
-          durationSec: 2465,
-          accentHue: "#FF7733",
-          guests: "Host: Raka • Tamu: Kak Dimas (Alumni '24)",
-          excerpt: "Perjalanan mengubah kebiasaan menunda belajar di semester akhir hingga akhirnya lolos seleksi perguruan tinggi negeri.",
-          description:
-            "Nggak semua siswa berprestasi itu rajin sejak hari pertama masuk SMA. Kak Dimas berbagi cerita realistis tentang titik baliknya di kelas XII, strategi tryout yang efektif, dan kesalahan fatal yang sebaiknya dihindari saat memilih jurusan.",
-          timestamps: [
-            { time: "00:00", sec: 0, label: "Perkenalan & Nostalgia Kantin SMANTI" },
-            { time: "09:20", sec: 560, label: "Titik Balik di Semester Ganjil Kelas XII" },
-            { time: "22:45", sec: 1365, label: "Strategi Belajar Efektif vs Belajar Lama" },
-            { time: "35:10", sec: 2110, label: "Q&A dari Pertanyaan Followers" }
-          ]
-        },
-        {
-          id: "ep-03",
-          number: "EP. 03",
-          title: "Overthinking Jam 12 Malam Soal Jurusan Kuliah & Masa Depan",
-          category: "Keresahan Pelajar",
-          date: "25 Okt 2026",
-          durationStr: "29:42",
-          durationSec: 1782,
-          accentHue: "#E04B00",
-          guests: "Host: Nadya & Farhan",
-          excerpt: "Kenapa sih makin mendekati kelulusan, pertanyaan 'mau jadi apa nanti?' terasa makin berat dijawab?",
-          description:
-            "Sebuah episode reflektif yang merangkum puluhan curhatan anonim dari kotak suara podcastsmanti.id. Kita membahas tekanan ekspektasi keluarga, fenomena FOMO pencapaian teman sebaya, dan langkah kecil untuk mengenali minat diri sendiri.",
-          timestamps: [
-            { time: "00:00", sec: 0, label: "Membaca Curhatan Anonim Terpilih" },
-            { time: "08:15", sec: 495, label: "Ikut Passion atau Ikut Peluang Kerja?" },
-            { time: "19:30", sec: 1170, label: "Berhenti Membandingkan Timeline Hidup Orang Lain" }
-          ]
-        },
-        {
-          id: "ep-02",
-          number: "EP. 02",
-          title: "Di Balik Layar Pensi: Drama H-1, Sound System, & Kopi Sachet",
-          category: "Behind The Scenes",
-          date: "18 Okt 2026",
-          durationStr: "37:50",
-          durationSec: 2270,
-          accentHue: "#FF661A",
-          guests: "Host: Farhan • Tamu: Panitia Acara Sekolah",
-          excerpt: "Cerita seru dan chaos di balik panggung acara tahunan sekolah yang nggak pernah kelihatan dari kursi penonton.",
-          description:
-            "Penonton cuma lihat panggung yang megah dan lampu sorot yang keren. Tapi di balik itu semua, ada tim logistik yang lari-larian cari kabel, negosiasi izin yang alot, sampai momen haru saat acara selesai dengan sukses.",
-          timestamps: [
-            { time: "00:00", sec: 0, label: "Awal Mula Konsep Acara Terbentuk" },
-            { time: "11:10", sec: 670, label: "Insiden Teknis Paling Menegangkan H-2 Jam" },
-            { time: "28:00", sec: 1680, label: "Pelajaran Terbesar Setelah Acara Usai" }
-          ]
-        },
-        {
-          id: "ep-01",
-          number: "EP. 01",
-          title: "Kenapa Kita Bikin Podcast Ini? (Episode Perdana)",
-          category: "Obrolan Santai",
-          date: "11 Okt 2026",
-          durationStr: "22:14",
-          durationSec: 1334,
-          accentHue: "#FF5500",
-          guests: "Tim Inti podcastsmanti.id",
-          excerpt: "Perkenalan kru, visi ruang dengar pelajar, dan bocoran segmen seru yang bakal hadir setiap minggunya.",
-          description:
-            "Selamat datang di episode perdana podcastsmanti.id! Di sini kami bercerita tentang bagaimana ide sederhana dari obrolan istirahat akhirnya berubah menjadi ruang produksi audio mandiri bagi warga SMANTI.",
-          timestamps: [
-            { time: "00:00", sec: 0, label: "Salam Pembuka & Perkenalan Host" },
-            { time: "06:30", sec: 390, label: "Kenapa Memilih Format Audio Podcast?" },
-            { time: "15:45", sec: 945, label: "Cara Kirim Ide Topik & Jadi Bintang Tamu" }
-          ]
+    const SITE_CONFIG = {
+      namaOrganisasi: "PODCAST SMANTI",
+      tagline: "SUARA & CERITA SEKOLAH",
+      deskripsiHero: "PODCAST SMANTI adalah media penyiaran audio dan ruang diskusi siswa yang merekam setiap cerita, aspirasi, prestasi, serta dinamika kehidupan sekolah secara hangat dan santai.",
+      periodeKepengurusan: "2026/2027",
+      logoImage: "assets/logo.png",
+      shareUrl: window.location.href
+    };
+
+    const SOCIAL_MEDIA_LINKS = [
+      { platform: "YouTube", handle: "PODCAST SMANTI Official", url: "https://youtube.com/@podcastsmanti", iconType: "youtube" },
+      { platform: "Instagram", handle: "@podcast.smanti", url: "https://www.instagram.com/podcasmanti?vrfl=MTNjZmp4d2M0c21meA==", iconType: "instagram" },
+      { platform: "Spotify", handle: "PODCAST SMANTI", url: "https://open.spotify.com", iconType: "spotify" },
+      { platform: "TikTok", handle: "@podcastsmanti", url: "https://tiktok.com/@podcastsmanti", iconType: "tiktok" }
+    ];
+
+    const EPISODES_DATA = [
+      {
+        id: "ep-01",
+        judul: "EPS 01: Cerita di Balik Layar MPLS & Masa Orientasi SMANTI",
+        kategori: "School Life",
+        tanggal: "10 November 2026",
+        durasi: "05:40",
+        narasumber: "Host: Ketua & Wakil • Narasumber: Ketua OSIS",
+        deskripsi: "Obrolan seru tentang keseruan MPLS tahun ini, momen paling berkesan bagi siswa baru, serta pesan untuk angkatan muda.",
+        coverUrl: "assets/banner.jpg",
+        audioUrl: "assets/podcast-eps1.mp3"
+      },
+      {
+        id: "ep-02",
+        judul: "EPS 02: Pemilos 2026 — Suara Pelajar Menentukan Pemimpin Masa Depan",
+        kategori: "Event Sekolah",
+        tanggal: "21 Oktober 2026",
+        durasi: "18:20",
+        narasumber: "Host: Tim Podcast • Narasumber: Panitia Pemilos & MPK",
+        deskripsi: "Liputan spesial suasana pemilihan ketua OSIS SMANTI, dinamika debat kandidat, hingga harapan seluruh warga sekolah.",
+        coverUrl: "https://images.unsplash.com/photo-1589903308904-1010c2294adc?auto=format&fit=crop&w=800&q=80",
+        audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+      },
+      {
+        id: "ep-03",
+        judul: "EPS 03: Ngobrol Santai Soal Overthinking Kelas 12 & Persiapan SNBP",
+        kategori: "Obrolan Santai",
+        tanggal: "05 Oktober 2026",
+        durasi: "24:10",
+        narasumber: "Host: Anggota Podcast SMANTI",
+        deskripsi: "Bahas tuntas kegalauan memilih jurusan kuliah, cara mengatur waktu belajar, dan tetap waras di tahun terakhir SMA.",
+        coverUrl: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=800&q=80",
+        audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+      },
+      {
+        id: "ep-04",
+        judul: "EPS 04: Rahasia Tim Debat & Karya Ilmiah SMANTI Tembus Nasional",
+        kategori: "Inspirasi & Prestasi",
+        tanggal: "19 September 2026",
+        durasi: "15:50",
+        narasumber: "Host: Tim Podcast • Narasumber: Tim Lomba Nasional SMANTI",
+        deskripsi: "Perjalanan latihan berbulan-bulan hingga akhirnya berhasil membawa pulang piala tingkat nasional untuk almamater.",
+        coverUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
+        audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
+      }
+    ];
+
+    const PENGURUS_INTI_DATA = [
+      { nama: "Hanif Ihsan", jabatan: "KETUA PODCAST", kelas: "XII.7", peranSingkat: "Koordinator Utama & Host", isKetua: true },
+      { nama: "Rafi Pratama", jabatan: "WAKIL KETUA", kelas: "XII.3", peranSingkat: "Manajemen Produksi & Konten", isKetua: false }
+    ];
+
+    const ANGGOTA_BIASA_DATA = [
+      { nama: "Nabil Putra A", label: "ANGGOTA", kelas: "XI.1" },
+      { nama: "Alya Putri", label: "ANGGOTA", kelas: "XI.4" },
+      { nama: "Zahra Nabila", label: "ANGGOTA", kelas: "XI.2" },
+      { nama: "Dimas Saputra", label: "ANGGOTA", kelas: "XI.6" },
+      { nama: "Kayla Maharani", label: "ANGGOTA", kelas: "X.5" },
+      { nama: "Fajar Nugroho", label: "ANGGOTA", kelas: "X.8" }
+    ];
+
+    const VALID_TABS = ["beranda", "profil", "episode", "anggota"];
+    let activeTab = "beranda";
+    let activeCategory = "Semua";
+    let searchQuery = "";
+    let currentEpisodeId = null;
+    let isPlaying = false;
+    const audioEl = document.getElementById("podcast-audio-engine");
+
+    window.switchTab = function(tabName, updateHash = true) {
+      if (!VALID_TABS.includes(tabName)) tabName = "beranda";
+      activeTab = tabName;
+      VALID_TABS.forEach(name => {
+        const panel = document.getElementById(`tab-${name}`);
+        if (panel) {
+          if (name === tabName) panel.classList.remove("hidden");
+          else panel.classList.add("hidden");
         }
-      ];
-
-      // 2. Database Tim Siar / Hosts
-      const HOSTS = [
-        {
-          name: "Raka Pratama",
-          role: "Lead Host & Producer",
-          bio: "Suka memancing obrolan mendalam soal mimpi, kampus, dan dinamika organisasi.",
-          initials: "RP"
-        },
-        {
-          name: "Nadya Putri",
-          role: "Co-Host & Script Editor",
-          bio: "Pendengar yang baik untuk topik keresahan pelajar dan cerita keseharian.",
-          initials: "NP"
-        },
-        {
-          name: "Farhan Kamil",
-          role: "Audio Engineer & Creative",
-          bio: "Memastikan kualitas vokal tetap jernih dan meracik atmosfer suara tiap episode.",
-          initials: "FK"
-        }
-      ];
-
-      // 3. Application State
-      const state = {
-        activeCategory: "all",
-        searchQuery: "",
-        currentEpId: null,
-        isPlaying: false,
-        currentTime: 0,
-        playbackRates: [1, 1.25, 1.5, 2],
-        rateIdx: 0,
-        volume: 0.7,
-        isMuted: false,
-        timerId: null
-      };
-
-      // 4. Web Audio API Ambient Synthesizer (Menghasilkan audio hangat saat diputar tanpa butuh file eksternal)
-      let audioCtx = null;
-      let masterGain = null;
-      let ambientInterval = null;
-
-      function initStudioSynth() {
-        if (!audioCtx) {
-          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-          audioCtx = new AudioContextClass();
-          masterGain = audioCtx.createGain();
-          masterGain.gain.value = state.isMuted ? 0 : state.volume * 0.12;
-          masterGain.connect(audioCtx.destination);
-        }
-        if (audioCtx.state === "suspended") {
-          audioCtx.resume();
-        }
-      }
-
-      function playStudioChord() {
-        if (!audioCtx || !state.isPlaying) return;
-        const now = audioCtx.currentTime;
-        // Lo-fi warm studio chord frequencies (Fmaj7 / Am9 vibe)
-        const freqs = [174.61, 220.0, 261.63, 329.63];
-        freqs.forEach((f, idx) => {
-          const osc = audioCtx.createOscillator();
-          const noteGain = audioCtx.createGain();
-          osc.type = idx % 2 === 0 ? "sine" : "triangle";
-          osc.frequency.setValueAtTime(f, now);
-
-          noteGain.gain.setValueAtTime(0.001, now);
-          noteGain.gain.exponentialRampToValueAtTime(0.06, now + 0.6);
-          noteGain.gain.exponentialRampToValueAtTime(0.0008, now + 3.4);
-
-          osc.connect(noteGain);
-          noteGain.connect(masterGain);
-
-          osc.start(now);
-          osc.stop(now + 3.5);
-        });
-      }
-
-      function startSynthLoop() {
-        initStudioSynth();
-        stopSynthLoop();
-        playStudioChord();
-        ambientInterval = setInterval(() => {
-          if (state.isPlaying) playStudioChord();
-        }, 3600);
-      }
-
-      function stopSynthLoop() {
-        if (ambientInterval) {
-          clearInterval(ambientInterval);
-          ambientInterval = null;
-        }
-      }
-
-      function updateSynthVolume() {
-        if (masterGain && audioCtx) {
-          const targetVol = state.isMuted ? 0 : state.volume * 0.12;
-          masterGain.gain.setTargetAtTime(targetVol, audioCtx.currentTime, 0.05);
-        }
-      }
-
-      // 5. Helper Generators
-      function formatSeconds(sec) {
-        const s = Math.max(0, Math.floor(sec));
-        const mins = Math.floor(s / 60);
-        const remSecs = s % 60;
-        return `${String(mins).padStart(2, "0")}:${String(remSecs).padStart(2, "0")}`;
-      }
-
-      function createEpisodeCoverSVG(ep) {
-        const seed = parseInt(ep.id.replace(/\D/g, ""), 10) || 1;
-        return `
-          <svg class="w-full h-full object-cover" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <linearGradient id="grad-${ep.id}" x1="0" y1="0" x2="400" y2="225" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#18181F" />
-                <stop offset="100%" stop-color="#2A1206" />
-              </linearGradient>
-            </defs>
-            <rect width="400" height="225" fill="url(#grad-${ep.id})" />
-            <circle cx="${80 + seed * 45}" cy="${60 + seed * 18}" r="110" fill="${ep.accentHue}" fill-opacity="0.18" />
-            <circle cx="${320 - seed * 20}" cy="180" r="85" stroke="${ep.accentHue}" stroke-opacity="0.25" stroke-width="1.5" />
-            <g fill="${ep.accentHue}" fill-opacity="0.85">
-              <rect x="148" y="${92 - seed * 3}" width="6" height="${42 + seed * 6}" rx="3" />
-              <rect x="162" y="${76 + seed * 2}" width="6" height="${74 - seed * 4}" rx="3" />
-              <rect x="176" y="64" width="6" height="98" rx="3" />
-              <rect x="190" y="${84 - seed * 2}" width="6" height="${58 + seed * 4}" rx="3" />
-              <rect x="204" y="58" width="6" height="110" rx="3" />
-              <rect x="218" y="78" width="6" height="70" rx="3" />
-              <rect x="232" y="90" width="6" height="46" rx="3" />
-              <rect x="246" y="100" width="6" height="26" rx="3" />
-            </g>
-            <text x="20" y="205" fill="#FFFFFF" fill-opacity="0.35" font-family="monospace" font-size="11" letter-spacing="1.5">PODCASTSMANTI.ID</text>
-          </svg>
-        `;
-      }
-
-      // 6. DOM References
-      const episodesGrid = document.getElementById("episodes-grid");
-      const episodesEmpty = document.getElementById("episodes-empty");
-      const searchInput = document.getElementById("search-input");
-      const filterChips = document.querySelectorAll(".filter-chip");
-      const btnResetFilter = document.getElementById("btn-reset-filter");
-      const hostsList = document.getElementById("hosts-list");
-      const topicForm = document.getElementById("topic-form");
-      const formFeedback = document.getElementById("form-feedback");
-      const aspirationsFeed = document.getElementById("aspirations-feed");
-
-      // Modal DOM
-      const notesModal = document.getElementById("notes-modal");
-      const btnCloseModal = document.getElementById("btn-close-modal");
-      const btnModalPlay = document.getElementById("btn-modal-play");
-      const modalTimestamps = document.getElementById("modal-timestamps");
-
-      // Sticky Player DOM
-      const stickyPlayer = document.getElementById("sticky-player");
-      const siteFooter = document.getElementById("site-footer");
-      const playerThumb = document.getElementById("player-thumb");
-      const playerEpMeta = document.getElementById("player-ep-meta");
-      const playerEpTitle = document.getElementById("player-ep-title");
-      const btnPlayerToggle = document.getElementById("btn-player-toggle");
-      const playerIconPlay = document.getElementById("player-icon-play");
-      const playerIconPause = document.getElementById("player-icon-pause");
-      const btnRw15 = document.getElementById("btn-rw-15");
-      const btnFf15 = document.getElementById("btn-ff-15");
-      const playerCurrentTime = document.getElementById("player-current-time");
-      const playerTotalTime = document.getElementById("player-total-time");
-      const playerScrubber = document.getElementById("player-scrubber");
-      const btnPlaybackSpeed = document.getElementById("btn-playback-speed");
-      const btnMuteToggle = document.getElementById("btn-mute-toggle");
-      const volIconOn = document.getElementById("vol-icon-on");
-      const volIconOff = document.getElementById("vol-icon-off");
-      const playerVolume = document.getElementById("player-volume");
-
-      // 7. Render Functions
-      function renderHosts() {
-        hostsList.innerHTML = HOSTS.map(
-          (host) => `
-          <article class="flex items-center gap-4 p-3.5 rounded-xl bg-obsidian-900 border border-white/[0.06] hover:border-ember-500/40 transition-colors">
-            <div class="w-13 h-13 w-12 h-12 rounded-full bg-gradient-to-br from-ember-500 to-ember-600 text-white font-mono font-bold text-sm flex items-center justify-center shrink-0 shadow-[0_0_16px_rgba(255,85,0,0.3)]">
-              ${host.initials}
-            </div>
-            <div>
-              <h4 class="text-sm sm:text-base font-bold text-white">${host.name}</h4>
-              <span class="block font-mono text-[11px] text-ember-500 mb-1">${host.role}</span>
-              <p class="text-xs text-[#9A9AA2] leading-relaxed">${host.bio}</p>
-            </div>
-          </article>
-        `
-        ).join("");
-      }
-
-      function renderEpisodes() {
-        const q = state.searchQuery.trim().toLowerCase();
-        const filtered = EPISODES.filter((ep) => {
-          const matchCat = state.activeCategory === "all" || ep.category === state.activeCategory;
-          const matchSearch =
-            !q ||
-            ep.title.toLowerCase().includes(q) ||
-            ep.excerpt.toLowerCase().includes(q) ||
-            ep.guests.toLowerCase().includes(q) ||
-            ep.number.toLowerCase().includes(q);
-          return matchCat && matchSearch;
-        });
-
-        if (filtered.length === 0) {
-          episodesGrid.innerHTML = "";
-          episodesEmpty.classList.remove("hidden");
-          return;
-        }
-
-        episodesEmpty.classList.add("hidden");
-
-        episodesGrid.innerHTML = filtered
-          .map((ep) => {
-            const isActive = state.currentEpId === ep.id;
-            const isPlayingThis = isActive && state.isPlaying;
-
-            return `
-            <article class="card-editorial ${isActive ? "is-active-ep" : ""} rounded-2xl overflow-hidden flex flex-col">
-              <div class="relative aspect-[16/9] bg-obsidian-900 overflow-hidden">
-                ${createEpisodeCoverSVG(ep)}
-                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-obsidian-950/85 backdrop-blur border border-white/10 font-mono text-[11px] font-semibold text-white">
-                  ${ep.number}
-                </span>
-                <!-- Equalizer Indicator -->
-                <div class="${isPlayingThis ? "is-playing opacity-100" : "opacity-0"} transition-opacity absolute bottom-3 right-3 flex items-end gap-1 h-6 px-2 py-1 rounded-md bg-obsidian-950/90 border border-ember-500/40">
-                  <span class="eq-bar"></span>
-                  <span class="eq-bar"></span>
-                  <span class="eq-bar"></span>
-                  <span class="eq-bar"></span>
-                </div>
-              </div>
-
-              <div class="p-5 flex-1 flex flex-col">
-                <div class="flex items-center gap-2 text-xs mb-2">
-                  <span class="font-semibold text-ember-500">${ep.category}</span>
-                  <span class="text-[#686873]">&bull;</span>
-                  <span class="font-mono text-[#9A9AA2]">${ep.durationStr}</span>
-                </div>
-
-                <h3 class="text-base sm:text-lg font-bold leading-snug text-white mb-2">
-                  ${ep.title}
-                </h3>
-
-                <p class="text-xs sm:text-sm text-[#9A9AA2] leading-relaxed mb-5 flex-1">
-                  ${ep.excerpt}
-                </p>
-
-                <div class="flex items-center justify-between pt-3.5 border-t border-white/[0.08]">
-                  <button
-                    type="button"
-                    data-action="play"
-                    data-ep-id="${ep.id}"
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all ${
-                      isActive
-                        ? "bg-ember-500 text-white shadow-[0_4px_14px_rgba(255,85,0,0.35)]"
-                        : "bg-ember-500/15 text-ember-400 hover:bg-ember-500 hover:text-white"
-                    }"
-                  >
-                    ${
-                      isPlayingThis
-                        ? `<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg><span>Jeda</span>`
-                        : `<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>Putar</span>`
-                    }
-                  </button>
-
-                  <button
-                    type="button"
-                    data-action="notes"
-                    data-ep-id="${ep.id}"
-                    class="text-xs font-semibold text-[#9A9AA2] hover:text-white px-2 py-1 transition-colors"
-                  >
-                    Show Notes
-                  </button>
-                </div>
-              </div>
-            </article>
-          `;
-          })
-          .join("");
-      }
-
-      // 8. Playback Control Functions
-      function startTimer() {
-        stopTimer();
-        state.timerId = setInterval(() => {
-          const ep = EPISODES.find((e) => e.id === state.currentEpId);
-          if (!ep || !state.isPlaying) return;
-
-          const rate = state.playbackRates[state.rateIdx];
-          state.currentTime += 0.25 * rate;
-
-          if (state.currentTime >= ep.durationSec) {
-            state.currentTime = 0;
-            pauseAudio();
-          }
-          syncPlayerProgress(ep);
-        }, 250);
-      }
-
-      function stopTimer() {
-        if (state.timerId) {
-          clearInterval(state.timerId);
-          state.timerId = null;
-        }
-      }
-
-      function syncPlayerProgress(ep) {
-        if (!ep) return;
-        const pct = Math.min(100, Math.max(0, (state.currentTime / ep.durationSec) * 100));
-        playerScrubber.value = pct;
-        playerScrubber.style.setProperty("--progress", `${pct}%`);
-        playerCurrentTime.textContent = formatSeconds(state.currentTime);
-        playerTotalTime.textContent = ep.durationStr;
-      }
-
-      function playEpisode(epId, jumpSec = null) {
-        const ep = EPISODES.find((item) => item.id === epId);
-        if (!ep) return;
-
-        // Toggle play/pause jika episode yang sama diklik tanpa jumpSec
-        if (state.currentEpId === epId && jumpSec === null) {
-          if (state.isPlaying) {
-            pauseAudio();
-          } else {
-            resumeAudio();
-          }
-          return;
-        }
-
-        state.currentEpId = ep.id;
-        state.currentTime = jumpSec !== null ? jumpSec : 0;
-
-        // Tampilkan Sticky Player
-        stickyPlayer.classList.remove("hidden");
-        siteFooter.classList.add("pb-28", "md:pb-24");
-
-        // Update metadata player
-        playerThumb.innerHTML = createEpisodeCoverSVG(ep);
-        playerEpMeta.textContent = `${ep.number} • ${ep.category}`;
-        playerEpTitle.textContent = ep.title;
-        syncPlayerProgress(ep);
-
-        resumeAudio();
-      }
-
-      function resumeAudio() {
-        state.isPlaying = true;
-        playerIconPlay.classList.add("hidden");
-        playerIconPause.classList.remove("hidden");
-        startTimer();
-        startSynthLoop();
-        updateAllPlayButtons();
-      }
-
-      function pauseAudio() {
-        state.isPlaying = false;
-        playerIconPlay.classList.remove("hidden");
-        playerIconPause.classList.add("hidden");
-        stopTimer();
-        stopSynthLoop();
-        updateAllPlayButtons();
-      }
-
-      function updateAllPlayButtons() {
-        renderEpisodes();
-        const heroLabel = document.getElementById("hero-play-label");
-        const isFeaturedPlaying = state.currentEpId === "ep-05" && state.isPlaying;
-        if (heroLabel) {
-          heroLabel.textContent = isFeaturedPlaying ? "Jeda Episode Unggulan" : "Putar Episode Unggulan";
-        }
-      }
-
-      // 9. Modal Show Notes Logic
-      function openNotesModal(epId) {
-        const ep = EPISODES.find((item) => item.id === epId);
-        if (!ep) return;
-
-        document.getElementById("modal-art").innerHTML = createEpisodeCoverSVG(ep);
-        document.getElementById("modal-num").textContent = ep.number;
-        document.getElementById("modal-cat").textContent = ep.category;
-        document.getElementById("modal-date").textContent = ep.date;
-        document.getElementById("modal-title").textContent = ep.title;
-        document.getElementById("modal-guests").textContent = ep.guests;
-        document.getElementById("modal-desc").textContent = ep.description;
-        btnModalPlay.dataset.epId = ep.id;
-
-        modalTimestamps.innerHTML = ep.timestamps
-          .map(
-            (ts) => `
-            <li>
-              <button
-                type="button"
-                data-ep-id="${ep.id}"
-                data-sec="${ts.sec}"
-                class="ts-jump-btn w-full flex items-center gap-3 p-3 rounded-xl bg-obsidian-900 hover:bg-obsidian-800 border border-white/[0.06] hover:border-ember-500/40 text-left transition-all group"
-              >
-                <span class="font-mono text-xs font-bold text-ember-500 bg-ember-500/15 px-2.5 py-1 rounded-md group-hover:bg-ember-500 group-hover:text-white transition-colors">
-                  ${ts.time}
-                </span>
-                <span class="text-xs sm:text-sm text-white">${ts.label}</span>
-              </button>
-            </li>
-          `
-          )
-          .join("");
-
-        notesModal.classList.remove("hidden");
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeNotesModal() {
-        notesModal.classList.add("hidden");
-        document.body.style.overflow = "";
-      }
-
-      // 10. Event Listeners
-      // Search & Filter
-      searchInput.addEventListener("input", (e) => {
-        state.searchQuery = e.target.value;
-        renderEpisodes();
       });
+      document.querySelectorAll(".nav-tab-btn").forEach(btn => {
+        const target = btn.getAttribute("data-tab-target");
+        const isDesktopBtn = !btn.classList.contains("mobile-nav-link");
+        const badge = btn.querySelector(".tab-badge");
+        if (isDesktopBtn) {
+          btn.className = target === tabName ? "nav-tab-btn px-3.5 py-2 rounded-full transition-all bg-smanti-pink text-smanti-black font-extrabold shadow-sm" : "nav-tab-btn px-3.5 py-2 rounded-full transition-all text-gray-300 hover:text-smanti-pink hover:bg-white/10 font-semibold";
+        } else {
+          if (target === tabName) {
+            btn.classList.add("text-smanti-pink", "font-extrabold");
+            btn.classList.remove("text-gray-200");
+            if (badge) { badge.className = "tab-badge text-xs font-bold px-2.5 py-0.5 rounded-full bg-smanti-gradient text-white"; badge.textContent = "Aktif"; }
+          } else {
+            btn.classList.remove("text-smanti-pink", "font-extrabold");
+            btn.classList.add("text-gray-200");
+            if (badge) {
+              const idxMap = { beranda: "01", profil: "02", episode: "03", anggota: "04" };
+              badge.className = "tab-badge text-xs font-mono px-2 py-0.5 rounded-full text-smanti-pink/70";
+              badge.textContent = idxMap[target] || "";
+            }
+          }
+        }
+      });
+      closeMobileDrawer();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (updateHash) history.replaceState(null, "", `#${tabName}`);
+    };
 
-      filterChips.forEach((chip) => {
-        chip.addEventListener("click", () => {
-          filterChips.forEach((c) => {
-            c.classList.remove("active", "bg-ember-500", "text-white", "border-ember-500", "font-semibold");
-            c.classList.add("bg-obsidian-850", "text-[#9A9AA2]", "border-white/[0.08]", "font-medium");
-          });
-          chip.classList.add("active", "bg-ember-500", "text-white", "border-ember-500", "font-semibold");
-          chip.classList.remove("bg-obsidian-850", "text-[#9A9AA2]", "border-white/[0.08]", "font-medium");
+    function getPodcastLogoHTML() {
+      return `
+        <svg viewBox="0 0 120 120" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="smantiTextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#FF2E93"/>
+              <stop offset="50%" stop-color="#D91B74"/>
+              <stop offset="100%" stop-color="#FF7043"/>
+            </linearGradient>
+          </defs>
+          <circle cx="60" cy="60" r="58" fill="#FF2E93"/>
+          <path d="M18 42 H102 V80 H92 L97 91 L82 80 H18 Z" fill="#FDF8F2" stroke="#141115" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M56 37 L59 31 L62 40 L65 28 L68 41 L71 33 L74 38" fill="none" stroke="#FF2E93" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="23" y="59" font-family="Plus Jakarta Sans, sans-serif" font-weight="900" font-size="17" fill="url(#smantiTextGrad)" letter-spacing="-0.5">POD</text>
+          <text x="61" y="57" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="10.5" fill="#FF7043">CAST</text>
+          <text x="23" y="75" font-family="Plus Jakarta Sans, sans-serif" font-weight="900" font-size="18.5" fill="url(#smantiTextGrad)" letter-spacing="0.5">SMANTI</text>
+        </svg>
+      `;
+    }
 
-          state.activeCategory = chip.dataset.cat;
+    function getSocialIconSVG(type) {
+      const icons = {
+        youtube: `<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`,
+        instagram: `<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`,
+        spotify: `<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`,
+        tiktok: `<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>`,
+        default: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>`
+      };
+      return icons[type] || icons.default;
+    }
+
+    function formatTime(seconds) {
+      if (isNaN(seconds) || !isFinite(seconds)) return "0:00";
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+    }
+
+    let toastTimeout;
+    function showToast(msg) {
+      const box = document.getElementById("toast-box");
+      const text = document.getElementById("toast-message");
+      text.textContent = msg;
+      box.classList.remove("opacity-0", "-translate-y-2");
+      box.classList.add("opacity-100", "translate-y-0");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        box.classList.remove("opacity-100", "translate-y-0");
+        box.classList.add("opacity-0", "-translate-y-2");
+      }, 2800);
+    }
+
+    function initApp() {
+      document.getElementById("navbar-logo-container").innerHTML = getPodcastLogoHTML();
+      document.getElementById("hero-logo-container").innerHTML = getPodcastLogoHTML();
+      document.getElementById("footer-logo-container").innerHTML = getPodcastLogoHTML();
+      document.getElementById("periode-title").innerHTML = `Struktur Kepengurusan <span class="text-smanti-gradient">${SITE_CONFIG.periodeKepengurusan}</span>`;
+      document.getElementById("footer-year").textContent = new Date().getFullYear();
+
+      const activeSocials = SOCIAL_MEDIA_LINKS.filter(item => item.url && item.url.trim() !== "");
+      document.getElementById("stat-total-episodes").textContent = EPISODES_DATA.length;
+      document.getElementById("stat-total-members").textContent = PENGURUS_INTI_DATA.length + ANGGOTA_BIASA_DATA.length;
+      document.getElementById("stat-total-socials").textContent = activeSocials.length;
+
+      renderFeaturedEpisodeOnBeranda();
+      renderSocialLinks();
+      renderCategories();
+      renderEpisodes();
+      renderPengurusInti();
+      renderAnggotaBiasa();
+      setupNavigation();
+      setupAudioPlayerEvents();
+
+      const initialHash = window.location.hash.replace("#", "").toLowerCase();
+      if (VALID_TABS.includes(initialHash)) {
+        switchTab(initialHash, false);
+      } else {
+        switchTab("beranda", false);
+      }
+    }
+
+    function renderFeaturedEpisodeOnBeranda() {
+      const container = document.getElementById("beranda-featured-episode");
+      if (!EPISODES_DATA || EPISODES_DATA.length === 0) return;
+      const ep = EPISODES_DATA[0];
+      const isThisPlaying = currentEpisodeId === ep.id && isPlaying;
+
+      container.innerHTML = `
+        <div class="bg-smanti-cream rounded-[24px] p-4 sm:p-5 border-2 border-smanti-black shadow-card flex flex-col sm:flex-row gap-4 sm:items-center text-smanti-black">
+          <div class="relative w-full sm:w-44 aspect-[16/10] sm:aspect-square rounded-[18px] overflow-hidden bg-smanti-pinkSoft border border-smanti-black shrink-0">
+            <img src="${ep.coverUrl}" alt="${ep.judul}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=80'" />
+            <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-smanti-black text-smanti-pink">${ep.kategori}</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 text-xs text-gray-500 font-semibold mb-1">
+              <span>${ep.tanggal}</span><span>•</span><span class="font-mono text-smanti-black font-bold">${ep.durasi}</span>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-smanti-black leading-snug mb-1.5">${ep.judul}</h3>
+            <p class="text-xs font-bold text-smanti-orange mb-2">${ep.narasumber}</p>
+            <p class="text-xs text-gray-600 leading-relaxed line-clamp-2 mb-4">${ep.deskripsi}</p>
+            <div class="flex flex-wrap items-center gap-2.5">
+              <button type="button" onclick="toggleEpisodePlay('${ep.id}')" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all active:scale-95 ${isThisPlaying ? 'bg-smanti-gradient text-white shadow-sm' : 'bg-smanti-black text-white hover:bg-smanti-pink hover:text-smanti-black'}">
+                ${isThisPlaying ? `<span>Sedang Diputar</span>` : `<svg class="w-3.5 h-3.5 fill-current text-smanti-pink" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>Putar Episode Ini</span>`}
+              </button>
+              <button type="button" onclick="switchTab('episode')" class="px-3.5 py-2 rounded-full text-xs font-bold border-2 border-smanti-black hover:bg-smanti-pinkSoft text-smanti-black transition-all">Episode Lainnya</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSocialLinks() {
+      const profilContainer = document.getElementById("social-links-profil");
+      const activeSocials = SOCIAL_MEDIA_LINKS.filter(item => item.url && item.url.trim() !== "");
+      profilContainer.innerHTML = activeSocials.map(soc => `
+        <a href="${soc.url}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3.5 p-4 rounded-2xl bg-smanti-charcoal border border-white/15 hover:border-smanti-pink hover:bg-smanti-charcoalSoft transition-all group">
+          <div class="w-11 h-11 rounded-xl bg-smanti-pink text-smanti-black group-hover:bg-smanti-gradient group-hover:text-white flex items-center justify-center shrink-0 transition-all font-bold">
+            ${getSocialIconSVG(soc.iconType)}
+          </div>
+          <div class="min-w-0 flex-1">
+            <p class="font-display font-bold text-sm text-white group-hover:text-smanti-pink transition-colors truncate">${soc.platform}</p>
+            <p class="text-xs text-gray-400 truncate">${soc.handle}</p>
+          </div>
+        </a>
+      `).join("");
+    }
+
+    function renderCategories() {
+      const container = document.getElementById("category-filters");
+      const uniqueCategories = ["Semua", ...new Set(EPISODES_DATA.map(ep => ep.kategori))];
+      container.innerHTML = uniqueCategories.map(cat => {
+        const isActive = cat === activeCategory;
+        const activeClasses = isActive ? "bg-smanti-pink text-smanti-black border-smanti-black shadow-sticker font-extrabold" : "bg-white text-smanti-black border-smanti-black hover:bg-smanti-pinkSoft font-semibold";
+        return `<button type="button" data-category="${cat}" class="category-pill px-5 py-2.5 rounded-full text-sm border-2 transition-all active:scale-95 ${activeClasses}">${cat}</button>`;
+      }).join("");
+
+      container.querySelectorAll(".category-pill").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeCategory = btn.getAttribute("data-category");
+          renderCategories();
           renderEpisodes();
         });
       });
+    }
 
-      btnResetFilter.addEventListener("click", () => {
-        state.searchQuery = "";
-        state.activeCategory = "all";
-        searchInput.value = "";
-        filterChips[0].click();
-      });
-
-      // Episodes Grid Delegation
-      episodesGrid.addEventListener("click", (e) => {
-        const btn = e.target.closest("[data-action]");
-        if (!btn) return;
-        const { action, epId } = btn.dataset;
-        if (action === "play") playEpisode(epId);
-        if (action === "notes") openNotesModal(epId);
+    function renderEpisodes() {
+      const grid = document.getElementById("episodes-grid");
+      const counter = document.getElementById("episode-counter");
+      const filtered = EPISODES_DATA.filter(ep => {
+        const matchCat = activeCategory === "Semua" || ep.kategori === activeCategory;
+        const q = searchQuery.toLowerCase().trim();
+        const matchSearch = !q || ep.judul.toLowerCase().includes(q) || ep.narasumber.toLowerCase().includes(q);
+        return matchCat && matchSearch;
       });
 
-      // Hero & Featured Buttons
-      document.getElementById("btn-quick-latest").addEventListener("click", () => playEpisode("ep-05"));
-      document.getElementById("btn-hero-play").addEventListener("click", () => playEpisode("ep-05"));
-      document.getElementById("btn-featured-circle").addEventListener("click", () => playEpisode("ep-05"));
-      document.getElementById("btn-featured-notes").addEventListener("click", () => openNotesModal("ep-05"));
+      counter.textContent = `Menampilkan ${filtered.length} dari ${EPISODES_DATA.length} episode`;
 
-      // Modal Events
-      btnCloseModal.addEventListener("click", closeNotesModal);
-      notesModal.addEventListener("click", (e) => {
-        if (e.target === notesModal) closeNotesModal();
-      });
-      btnModalPlay.addEventListener("click", () => {
-        playEpisode(btnModalPlay.dataset.epId);
-        closeNotesModal();
-      });
-      modalTimestamps.addEventListener("click", (e) => {
-        const jumpBtn = e.target.closest(".ts-jump-btn");
-        if (!jumpBtn) return;
-        playEpisode(jumpBtn.dataset.epId, Number(jumpBtn.dataset.sec));
-        closeNotesModal();
-      });
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && !notesModal.classList.contains("hidden")) closeNotesModal();
+      grid.innerHTML = filtered.map(ep => {
+        const isThisCurrent = currentEpisodeId === ep.id;
+        const isThisPlaying = isThisCurrent && isPlaying;
+        return `
+          <article class="bg-smanti-cream rounded-[24px] p-4 border-2 ${isThisCurrent ? 'border-smanti-pink ring-2 ring-smanti-pink' : 'border-smanti-black'} shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between group text-smanti-black">
+            <div>
+              <div class="relative aspect-[16/10] w-full rounded-[18px] overflow-hidden bg-smanti-pinkSoft border border-smanti-black mb-4">
+                <img src="${ep.coverUrl}" alt="${ep.judul}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=80'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[11px] font-extrabold bg-smanti-black text-smanti-pink">${ep.kategori}</span>
+                <button type="button" onclick="toggleEpisodePlay('${ep.id}')" aria-label="Putar" class="absolute inset-0 flex items-center justify-center bg-smanti-black/20 opacity-95 group-hover:bg-smanti-black/35 transition-all">
+                  <span class="w-12 h-12 rounded-full bg-smanti-pink text-smanti-black flex items-center justify-center shadow-lg ring-2 ring-smanti-black font-bold">
+                    ${isThisPlaying ? `<span>||</span>` : `<svg class="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>`}
+                  </span>
+                </button>
+              </div>
+              <h3 class="font-display font-extrabold text-[17px] text-smanti-black leading-snug mb-1.5">${ep.judul}</h3>
+              <p class="text-xs font-bold text-smanti-orange mb-2">${ep.narasumber}</p>
+              <p class="text-xs text-gray-600 leading-relaxed line-clamp-2 mb-4">${ep.deskripsi}</p>
+            </div>
+            <div class="pt-3 border-t border-smanti-black/10 flex items-center justify-between gap-2">
+              <span class="text-xs text-gray-600 font-semibold">${ep.tanggal}</span>
+              <button type="button" onclick="toggleEpisodePlay('${ep.id}')" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all active:scale-95 ${isThisPlaying ? 'bg-smanti-gradient text-white shadow-sm' : 'bg-smanti-black text-white hover:bg-smanti-pink hover:text-smanti-black'}">
+                ${isThisPlaying ? `<span>Sedang Diputar</span>` : `<span>Putar Audio</span>`}
+              </button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderPengurusInti() {
+      const grid = document.getElementById("pengurus-inti-grid");
+      grid.innerHTML = PENGURUS_INTI_DATA.map((p) => `
+        <div class="bg-smanti-cream rounded-[26px] p-4 border-2 border-smanti-black shadow-card text-smanti-black">
+          <div class="relative aspect-[3/4] w-full rounded-[20px] overflow-hidden bg-smanti-pinkSoft border-2 border-smanti-black mb-4 flex flex-col justify-between p-4">
+            <div class="flex items-center justify-between z-10">
+              <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-smanti-black text-smanti-pink">SMANTI</span>
+              <span class="text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-white border border-smanti-black">${p.kelas}</span>
+            </div>
+            <div class="my-auto mx-auto w-20 h-20 rounded-full bg-smanti-black shadow-md ring-4 ring-smanti-pink flex items-center justify-center text-smanti-pink font-extrabold text-2xl">
+              ${p.nama.split(' ').map(n => n[0]).slice(0,2).join('')}
+            </div>
+          </div>
+          <div class="mb-2 flex items-center justify-between gap-2">
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider ${p.isKetua ? 'bg-smanti-gradient text-white' : 'bg-smanti-black text-smanti-pink'}">
+              <span>${p.jabatan}</span>
+            </span>
+          </div>
+          <h4 class="font-display font-extrabold text-lg sm:text-xl text-smanti-black leading-snug">${p.nama}</h4>
+          <p class="text-xs text-gray-600 font-medium mt-0.5">${p.peranSingkat}</p>
+        </div>
+      `).join("");
+    }
+
+    function renderAnggotaBiasa() {
+      const grid = document.getElementById("anggota-biasa-grid");
+      grid.innerHTML = ANGGOTA_BIASA_DATA.map((m) => `
+        <div class="bg-smanti-cream rounded-[22px] p-2.5 sm:p-3 border-2 border-smanti-black shadow-sticker text-smanti-black flex flex-col">
+          <div class="relative aspect-[3/4] w-full rounded-[16px] overflow-hidden bg-smanti-pinkSoft border border-smanti-black mb-3 flex flex-col justify-between p-2.5">
+            <div class="flex items-center justify-between z-10">
+              <span class="text-[8px] font-extrabold px-1.5 py-0.5 rounded bg-smanti-black text-smanti-pink">SMANTI</span>
+              <span class="text-[10px] font-extrabold bg-white border border-smanti-black px-1.5 py-0.5 rounded-full">${m.kelas}</span>
+            </div>
+            <div class="my-auto mx-auto w-12 h-12 rounded-full bg-smanti-black border-2 border-smanti-pink flex items-center justify-center text-smanti-pink font-extrabold text-sm">
+              ${m.nama.split(' ').map(n => n[0]).slice(0,2).join('')}
+            </div>
+          </div>
+          <h4 class="font-display font-extrabold text-sm text-smanti-black truncate">${m.nama}</h4>
+          <p class="text-[11px] font-semibold text-gray-600 truncate">Kelas ${m.kelas}</p>
+        </div>
+      `).join("");
+    }
+
+    window.toggleEpisodePlay = function(episodeId) {
+      const ep = EPISODES_DATA.find(item => item.id === episodeId);
+      if (!ep) return;
+
+      if (currentEpisodeId === episodeId) {
+        if (audioEl.paused) audioEl.play().catch(() => showToast("Gagal memutar audio. Pastikan file assets/podcast-eps1.mp3 ada."));
+        else audioEl.pause();
+        return;
+      }
+
+      currentEpisodeId = episodeId;
+      audioEl.src = ep.audioUrl;
+      
+      document.getElementById("player-title").textContent = ep.judul;
+      document.getElementById("player-category").textContent = `${ep.kategori} • ${ep.tanggal}`;
+      document.getElementById("player-cover").src = ep.coverUrl || "";
+      document.getElementById("player-duration").textContent = ep.durasi || "0:00";
+      document.getElementById("mini-player").classList.remove("translate-y-full");
+
+      audioEl.play().then(() => showToast(`Memutar: ${ep.judul}`)).catch(() => showToast("Gagal memuat file audio lokal."));
+      renderEpisodes();
+      renderFeaturedEpisodeOnBeranda();
+    };
+
+    function updatePlayerUIState(playing) {
+      isPlaying = playing;
+      const playIcon = document.getElementById("main-play-icon");
+      const pauseIcon = document.getElementById("main-pause-icon");
+      if (playing) {
+        playIcon.classList.add("hidden");
+        pauseIcon.classList.remove("hidden");
+      } else {
+        playIcon.classList.remove("hidden");
+        pauseIcon.classList.add("hidden");
+      }
+      renderEpisodes();
+      renderFeaturedEpisodeOnBeranda();
+    }
+
+    function setupAudioPlayerEvents() {
+      const seekBar = document.getElementById("player-seek-bar");
+      const progressFill = document.getElementById("player-progress-fill");
+      const currentTimeEl = document.getElementById("player-current-time");
+
+      audioEl.addEventListener("play", () => updatePlayerUIState(true));
+      audioEl.addEventListener("pause", () => updatePlayerUIState(false));
+      audioEl.addEventListener("ended", () => updatePlayerUIState(false));
+
+      audioEl.addEventListener("timeupdate", () => {
+        if (!audioEl.duration) return;
+        const pct = (audioEl.currentTime / audioEl.duration) * 100;
+        seekBar.value = pct;
+        progressFill.style.width = `${pct}%`;
+        currentTimeEl.textContent = formatTime(audioEl.currentTime);
       });
 
-      // Sticky Player Controls
-      btnPlayerToggle.addEventListener("click", () => {
-        if (!state.currentEpId) return;
-        state.isPlaying ? pauseAudio() : resumeAudio();
+      seekBar.addEventListener("input", (e) => {
+        if (!audioEl.duration) return;
+        audioEl.currentTime = (e.target.value / 100) * audioEl.duration;
       });
 
-      btnRw15.addEventListener("click", () => {
-        const ep = EPISODES.find((e) => e.id === state.currentEpId);
-        if (!ep) return;
-        state.currentTime = Math.max(0, state.currentTime - 15);
-        syncPlayerProgress(ep);
+      document.getElementById("btn-main-play").addEventListener("click", () => {
+        if (!currentEpisodeId && EPISODES_DATA.length > 0) toggleEpisodePlay(EPISODES_DATA[0].id);
+        else if (audioEl.paused) audioEl.play();
+        else audioEl.pause();
       });
 
-      btnFf15.addEventListener("click", () => {
-        const ep = EPISODES.find((e) => e.id === state.currentEpId);
-        if (!ep) return;
-        state.currentTime = Math.min(ep.durationSec, state.currentTime + 15);
-        syncPlayerProgress(ep);
+      document.getElementById("btn-rewind").addEventListener("click", () => { audioEl.currentTime = Math.max(0, audioEl.currentTime - 10); });
+      document.getElementById("btn-forward").addEventListener("click", () => { if (audioEl.duration) audioEl.currentTime = Math.min(audioEl.duration, audioEl.currentTime + 10); });
+      document.getElementById("btn-close-player").addEventListener("click", () => { audioEl.pause(); document.getElementById("mini-player").classList.add("translate-y-full"); });
+      document.getElementById("btn-play-latest").addEventListener("click", () => { if (EPISODES_DATA.length > 0) toggleEpisodePlay(EPISODES_DATA[0].id); });
+      document.getElementById("search-episode").addEventListener("input", (e) => { searchQuery = e.target.value; renderEpisodes(); });
+
+      document.getElementById("btn-share-web").addEventListener("click", () => {
+        navigator.clipboard?.writeText(SITE_CONFIG.shareUrl);
+        showToast("Tautan website berhasil disalin!");
+      });
+    }
+
+    function setupNavigation() {
+      const toggleBtn = document.getElementById("menu-toggle-btn");
+      const drawer = document.getElementById("mobile-drawer");
+      const backdrop = document.getElementById("drawer-backdrop");
+
+      toggleBtn.addEventListener("click", () => {
+        drawer.classList.toggle("hidden");
+        backdrop.classList.toggle("hidden");
       });
 
-      playerScrubber.addEventListener("input", (e) => {
-        const ep = EPISODES.find((item) => item.id === state.currentEpId);
-        if (!ep) return;
-        const pct = parseFloat(e.target.value);
-        state.currentTime = (pct / 100) * ep.durationSec;
-        syncPlayerProgress(ep);
+      backdrop.addEventListener("click", () => {
+        drawer.classList.add("hidden");
+        backdrop.classList.add("hidden");
       });
 
-      btnPlaybackSpeed.addEventListener("click", () => {
-        state.rateIdx = (state.rateIdx + 1) % state.playbackRates.length;
-        btnPlaybackSpeed.textContent = `${state.playbackRates[state.rateIdx]}x`;
-      });
-
-      playerVolume.addEventListener("input", (e) => {
-        state.volume = parseFloat(e.target.value);
-        state.isMuted = state.volume === 0;
-        playerVolume.style.setProperty("--progress", `${state.volume * 100}%`);
-        volIconOn.classList.toggle("hidden", state.isMuted);
-        volIconOff.classList.toggle("hidden", !state.isMuted);
-        updateSynthVolume();
-      });
-
-      btnMuteToggle.addEventListener("click", () => {
-        state.isMuted = !state.isMuted;
-        volIconOn.classList.toggle("hidden", state.isMuted);
-        volIconOff.classList.toggle("hidden", !state.isMuted);
-        updateSynthVolume();
-      });
-
-      // Mobile Navigation Toggle
-      const btnMobileMenu = document.getElementById("btn-mobile-menu");
-      const mobileMenu = document.getElementById("mobile-menu");
-      btnMobileMenu.addEventListener("click", () => {
-        const isOpen = !mobileMenu.classList.contains("hidden");
-        mobileMenu.classList.toggle("hidden", isOpen);
-        btnMobileMenu.setAttribute("aria-expanded", String(!isOpen));
-      });
-      document.querySelectorAll(".mobile-nav-link").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.add("hidden");
-          btnMobileMenu.setAttribute("aria-expanded", "false");
+      document.querySelectorAll(".nav-tab-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const targetTab = btn.getAttribute("data-tab-target");
+          if (targetTab) switchTab(targetTab);
         });
       });
+    }
 
-      // Listener Submission Form
-      topicForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const nameInput = document.getElementById("sender-name");
-        const segInput = document.getElementById("topic-segment");
-        const msgInput = document.getElementById("topic-message");
+    function closeMobileDrawer() {
+      document.getElementById("mobile-drawer").classList.add("hidden");
+      document.getElementById("drawer-backdrop").classList.add("hidden");
+    }
 
-        const msg = msgInput.value.trim();
-        if (!msg) {
-          formFeedback.textContent = "Tuliskan ide topik atau pesanmu terlebih dahulu ya.";
-          formFeedback.className = "text-xs font-medium text-red-400";
-          msgInput.focus();
-          return;
-        }
-
-        const sender = nameInput.value.trim() || "Pendengar Anonim";
-        const segment = segInput.value;
-
-        // Tambahkan ke feed aspirasi secara dinamis
-        const li = document.createElement("li");
-        li.className = "p-2.5 rounded-lg bg-obsidian-850 border border-ember-500/30";
-        const metaRow = document.createElement("div");
-        metaRow.className = "flex justify-between text-[#686873] font-mono mb-1";
-        const senderSpan = document.createElement("span");
-        senderSpan.textContent = sender;
-        const segSpan = document.createElement("span");
-        segSpan.className = "text-ember-500";
-        segSpan.textContent = segment;
-        metaRow.append(senderSpan, segSpan);
-
-        const bodyP = document.createElement("p");
-        bodyP.className = "text-[#D1D1D6]";
-        bodyP.textContent = `"${msg}"`;
-
-        li.append(metaRow, bodyP);
-        aspirationsFeed.prepend(li);
-
-        formFeedback.textContent = `Terima kasih, ${sender}! Ide topikmu sudah masuk ke studio.`;
-        formFeedback.className = "text-xs font-medium text-emerald-400";
-        topicForm.reset();
-      });
-
-      // Initial Render
-      document.getElementById("year-now").textContent = new Date().getFullYear();
-      renderHosts();
-      renderEpisodes();
-    });
+    window.addEventListener("DOMContentLoaded", initApp);
   </script>
 </body>
 </html>
