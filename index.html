@@ -229,6 +229,7 @@ a.soc:hover { transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--shadow
 .ep h3 { font-size: 1.125rem; font-weight: 800; line-height: 1.3; }
 .ep p { color: var(--ink-soft); font-size: 0.9375rem; }
 .ep-side { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.ep-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
 .ep-meta { font-size: 0.875rem; font-weight: 700; color: var(--ink-soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .ep-soon { font-size: 0.875rem; font-weight: 700; color: var(--ink-soft); border: 2.5px dashed var(--line); border-radius: 999px; padding: 0.35rem 0.9rem; white-space: nowrap; }
 .eps-empty { padding: 28px; color: var(--ink-soft); }
@@ -321,6 +322,7 @@ button.div-card:hover { transform: translate(2px, 2px); box-shadow: 3px 3px 0 va
   .news, .soc-grid, .fields { grid-template-columns: minmax(0, 1fr); }
   .ep { grid-template-columns: auto minmax(0, 1fr); padding: 18px; }
   .ep-side { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .ep-links { justify-content: flex-start; }
   .brand { font-size: 1.25rem; }
   .card { padding: 20px; }
   .soc-act { display: none; }
@@ -601,7 +603,8 @@ button.div-card:hover { transform: translate(2px, 2px); box-shadow: 3px 3px 0 va
    Tempel link kamu di antara tanda kutip "".
    - socials: link akun Instagram, TikTok, YouTube, dan Spotify.
    - episodes: satu blok { ... } per episode, yang terbaru paling atas.
-     url boleh link YouTube, Spotify, TikTok, atau Instagram.
+     links: isi link tiap platform yang ada (spotify, youtube, tiktok, instagram).
+     Platform yang dikosongkan tidak akan muncul sebagai tombol.
    ====================================================== */
 const CONFIG = {
   socials: {
@@ -610,11 +613,28 @@ const CONFIG = {
     youtube: "",
     spotify: "https://open.spotify.com/show/6OttFOSHxaLoUkaxu14nvg?si=Nb0mJLFpQWGRy6-XP25MFg&utm_source=copy-link"
   },
+  /* ===== TEMPLATE EPISODE (salin satu blok ini, tempel di PALING ATAS daftar episodes) =====
+     Cukup ganti tulisan di antara tanda kutip. Platform yang tidak dipakai biarkan kosong "".
+
+     { no: "EP 05",
+       title: "Judul episode",
+       desc: "Deskripsi singkat episode.",
+       duration: "30 menit",
+       links: {
+         spotify: "",     // tempel link Spotify di sini
+         youtube: "",     // tempel link YouTube di sini
+         tiktok: "",      // tempel link TikTok di sini
+         instagram: ""    // tempel link Instagram di sini
+       }
+     },
+
+     Jangan lupa tanda koma (,) di akhir blok jika masih ada episode di bawahnya.
+     ================================================================================== */
   episodes: [
-    { no: "EP 04", title: "Ngobrol santai: kenapa podcast terasa dekat?", desc: "Obrolan ringan soal pengalaman mendengarkan podcast sehari-hari.", duration: "32 menit", url: "" },
-    { no: "EP 03", title: "Cerita di balik layar rekaman", desc: "Dari ruang rekaman sederhana sampai proses penyuntingan suara.", duration: "28 menit", url: "" },
-    { no: "EP 02", title: "Topik pilihan pendengar", desc: "Membahas usul dan pertanyaan yang masuk dari para pendengar.", duration: "25 menit", url: "" },
-    { no: "EP 01", title: "Perkenalan Podcast Smanti", desc: "Siapa kami, apa yang akan dibahas, dan cara mengikuti episodenya.", duration: "18 menit", url: "" }
+    { no: "EP 04", title: "Ngobrol santai: kenapa podcast terasa dekat?", desc: "Obrolan ringan soal pengalaman mendengarkan podcast sehari-hari.", duration: "32 menit", links: { spotify: "", youtube: "", tiktok: "", instagram: "" } },
+    { no: "EP 03", title: "Cerita di balik layar rekaman", desc: "Dari ruang rekaman sederhana sampai proses penyuntingan suara.", duration: "28 menit", links: { spotify: "", youtube: "", tiktok: "", instagram: "" } },
+    { no: "EP 02", title: "Topik pilihan pendengar", desc: "Membahas usul dan pertanyaan yang masuk dari para pendengar.", duration: "25 menit", links: { spotify: "", youtube: "", tiktok: "", instagram: "" } },
+    { no: "EP 01", title: "Perkenalan Podcast Smanti", desc: "Siapa kami, apa yang akan dibahas, dan cara mengikuti episodenya.", duration: "18 menit", links: { spotify: "https://open.spotify.com/episode/6tDxzJEgDDodd6LYL701pQ?si=IqZtJQzqTJKwu9UWL6Wi2A&utm_source=copy-link", youtube: "", tiktok: "", instagram: "https://www.instagram.com/reel/DfSDwUsJ1Lr/?rpxt=cDd2cjEyaHVuaXV3" } }
   ],
   /* Anggota: tiap divisi punya daftar anggota sendiri (tampil saat kartu divisi diklik). Ganti "Nama" dengan nama asli. foto: tempel link gambar (kosongkan jika belum ada). */
   anggota: {
@@ -693,7 +713,7 @@ const CONFIG = {
     const eps = s && Array.isArray(s.episodes) ? s.episodes : [];
     eps.slice(0, 80).forEach(function (e) {
       e = e || {};
-      out.episodes.push({ no: String(e.no || ""), title: String(e.title || ""), desc: String(e.desc || ""), duration: String(e.duration || ""), url: String(e.url || "") });
+      out.episodes.push({ no: String(e.no || ""), title: String(e.title || ""), desc: String(e.desc || ""), duration: String(e.duration || ""), url: String(e.url || ""), links: (e.links && typeof e.links === "object") ? e.links : {} });
     });
     return out;
   }
@@ -752,12 +772,30 @@ const CONFIG = {
       row.appendChild(txt);
       const side = el("div", "ep-side");
       if (e.duration) side.appendChild(el("span", "ep-meta", e.duration));
-      const url = cleanUrl(e.url);
-      if (url) {
-        const p = platformOf(url);
-        const a = el("a", "btn btn-primary btn-sm", p ? "Dengarkan di " + p : "Buka episode");
-        a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
-        side.appendChild(a);
+      const PLAT = [
+        { key: "spotify", label: "Dengarkan di Spotify" },
+        { key: "youtube", label: "Tonton di YouTube" },
+        { key: "tiktok", label: "Tonton di TikTok" },
+        { key: "instagram", label: "Lihat di Instagram" }
+      ];
+      const found = [];
+      PLAT.forEach(function (pl) {
+        const u = cleanUrl(e.links && e.links[pl.key]);
+        if (u) found.push({ label: pl.label, url: u });
+      });
+      const legacy = cleanUrl(e.url);
+      if (legacy && !found.some(function (f) { return f.url === legacy; })) {
+        const pn = platformOf(legacy);
+        found.push({ label: pn ? "Dengarkan di " + pn : "Buka episode", url: legacy });
+      }
+      if (found.length) {
+        const wrap = el("div", "ep-links");
+        found.forEach(function (f) {
+          const a = el("a", "btn btn-primary btn-sm", f.label);
+          a.href = f.url; a.target = "_blank"; a.rel = "noopener noreferrer";
+          wrap.appendChild(a);
+        });
+        side.appendChild(wrap);
       } else {
         side.appendChild(el("span", "ep-soon", "Link segera hadir"));
       }
